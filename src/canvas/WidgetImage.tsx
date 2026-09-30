@@ -26,7 +26,7 @@ export function WidgetImage({ def, params, username, mode = 'light', natural, cl
     return (
       <span
         className={cx(
-          'flex items-center justify-center rounded bg-slate-500/10 px-2 text-xs text-slate-500',
+          'flex items-center justify-center rounded bg-muted/10 px-2 text-xs text-muted',
           natural ? 'h-6' : 'w-full',
           className
         )}
@@ -47,7 +47,7 @@ export function WidgetImage({ def, params, username, mode = 'light', natural, cl
       onError={() => setFailed(src)}
       className={cx(
         natural ? 'max-w-full' : 'w-full',
-        loading && 'animate-pulse rounded bg-slate-500/15',
+        loading && 'animate-pulse rounded bg-muted/15',
         loading && natural && 'min-h-5 min-w-20',
         className
       )}

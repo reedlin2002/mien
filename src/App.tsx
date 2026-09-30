@@ -70,14 +70,14 @@ export function App() {
   }, [lang]);
 
   return (
-    <div className="flex h-screen flex-col bg-slate-100 text-slate-900">
+    <div className="flex h-screen flex-col bg-ground text-ink">
       <p className="bg-amber-100 px-4 py-2 text-center text-sm text-amber-900 lg:hidden">{t('narrow')}</p>
       <Toolbar onExport={() => setDialog('export')} onTemplates={() => setDialog('templates')} />
       <Workspace />
       {dialog === 'export' && <ExportDialog onClose={() => setDialog(null)} />}
       {dialog === 'templates' && (
         <Modal title={t('templatesTitle')} width="max-w-3xl" onClose={() => setDialog(null)}>
-          <p className="-mt-3 mb-4 text-sm text-slate-500">{t('templatesHint')}</p>
+          <p className="-mt-3 mb-4 text-sm text-muted">{t('templatesHint')}</p>
           <TemplateGallery columns={2} onPick={() => setDialog(null)} />
         </Modal>
       )}

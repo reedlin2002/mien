@@ -50,3 +50,38 @@ export const SearchIcon = icon(['M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16z', 'm21 21
 export const TemplateIcon = icon(['M3 3h18v18H3z', 'M3 9h18', 'M9 21V9']);
 export const BoldIcon = icon(['M6 12h9a4 4 0 0 1 0 8H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h7a4 4 0 0 1 0 8']);
 export const GlobeIcon = icon(['M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z', 'M2 12h20', 'M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z']);
+export const ChevronDownIcon = icon(['m6 9 6 6 6-6']);
+export const ChevronRightIcon = icon(['m9 18 6-6-6-6']);
+export const ArrowRightIcon = icon(['M5 12h14', 'M13 6l6 6-6 6']);
+export const ArrowUpIcon = icon(['M12 19V5', 'm5 12 7-7 7 7']);
+export const ArrowDownIcon = icon(['M12 5v14', 'm19 12-7 7-7-7']);
+export const TextIcon = icon(['M4 7V5h16v2', 'M9 19h6', 'M12 5v14']);
+export const ParagraphIcon = icon(['M4 6h16', 'M4 12h16', 'M4 18h10']);
+export const HeaderIcon = icon(['M5 4h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z', 'M3 16h18', 'M3 20h12']);
+export const ChartIcon = icon(['M4 20V10', 'M10 20V4', 'M16 20v-7', 'M22 20H2']);
+export const GridIcon = icon(['M3 3h7v7H3z', 'M14 3h7v7h-7z', 'M3 14h7v7H3z', 'M14 14h7v7h-7z']);
+export const BadgeIcon = icon(['M6 8h12a4 4 0 0 1 0 8H6a4 4 0 0 1 0-8z', 'M12 8v8']);
+export const ImageIcon = icon(['M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z', 'M9 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4z', 'm21 15-5-5L5 21']);
+export const CheckCircleIcon = icon(['M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z', 'm8 12 3 3 5-6']);
+export const WarningIcon = icon(['M12 9v4', 'M12 17h.01', 'M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z']);
+export const LockIcon = icon(['M6 11h12a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2z', 'M8 11V7a4 4 0 0 1 8 0v4']);
+
+/** Six-dot drag grip. */
+export function GripIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 12 16" width="10" height="14" fill="currentColor" aria-hidden="true" {...props}>
+      {[3, 8, 13].flatMap((y) => [3, 9].map((x) => <circle key={`${x}-${y}`} cx={x} cy={y} r="1.5" />))}
+    </svg>
+  );
+}
+
+/** The brand mark: a wide block above two that have snapped into place. */
+export function LogoMark(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" {...props}>
+      <rect x="2" y="2" width="20" height="7" rx="2" fill="var(--color-brand)" />
+      <rect x="2" y="12" width="9" height="10" rx="2" fill="var(--color-ink)" />
+      <rect x="14" y="12" width="8" height="10" rx="2" fill="var(--color-ink)" />
+    </svg>
+  );
+}

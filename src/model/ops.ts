@@ -181,3 +181,30 @@ export function duplicateCell(doc: Doc, cellId: string): { doc: Doc; id: string 
 export function replaceRows(doc: Doc, rows: Row[]): Doc {
   return { ...doc, rows };
 }
+
+/**
+ * Moves a whole row to the gap at `gapIndex` (0 = above the first row), counted
+ * before the row is lifted out. Dropping it into either gap next to itself is a no-op.
+ */
+export function moveRow(doc: Doc, rowId: string, gapIndex: number): Doc {
+  const from = doc.rows.findIndex((r) => r.id === rowId);
+  if (from === -1 || gapIndex === from || gapIndex === from + 1) return doc;
+  const rows = doc.rows.filter((r) => r.id !== rowId);
+  const to = Math.max(0, Math.min(gapIndex > from ? gapIndex - 1 : gapIndex, rows.length));
+  rows.splice(to, 0, doc.rows[from]);
+  return { ...doc, rows };
+}
+
+export function removeRow(doc: Doc, rowId: string): Doc {
+  const rows = doc.rows.filter((r) => r.id !== rowId);
+  return rows.length === doc.rows.length ? doc : { ...doc, rows };
+}
+
+/** Copies a row, with fresh ids, right below itself. */
+export function duplicateRow(doc: Doc, rowId: string): Doc {
+  const index = doc.rows.findIndex((r) => r.id === rowId);
+  if (index === -1) return doc;
+  const row = doc.rows[index];
+  const copy: Row = { ...row, id: newId(), cells: row.cells.map((c) => ({ ...c, id: newId() })) };
+  return { ...doc, rows: [...doc.rows.slice(0, index + 1), copy, ...doc.rows.slice(index + 1)] };
+}

@@ -1,3 +1,25 @@
 /* GitHub's markdown styles are injected at runtime into their own layer; see
    src/canvas/markdownTheme.ts. */
 @import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Bricolage Grotesque', 'Geist', ui-sans-serif, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
+
+  /* Orange and black. Orange marks what you're working on (selection, drop line); */
+  /* black carries the brand and primary actions. */
+  --color-brand: #f26b3a;
+  --color-brand-strong: #d4541f;
+  --color-brand-tint: #fdebe3;
+  --color-brand-ink: #2a1206;
+  --color-brand-text: #b3400e;
+  --color-ink: #1b1a17;
+  --color-muted: #6f6c64;
+  --color-faint: #a19e95;
+  --color-line: #e5e2da;
+  --color-ground: #f1efea;
+  --color-paper: #f6f5f2;
+  --color-github: #1f883d;
+  --color-github-strong: #1a7f37;
+}

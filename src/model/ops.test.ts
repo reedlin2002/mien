@@ -1,6 +1,20 @@
 import { describe, expect, it } from 'vitest';
 import { emptyDoc, textCell, widgetCell } from './doc';
-import { canDrop, duplicateCell, insertCell, moveCell, removeCell, resizeCell, setParam, setRowAlign, setText, widthLimit } from './ops';
+import {
+  canDrop,
+  duplicateCell,
+  duplicateRow,
+  insertCell,
+  moveCell,
+  moveRow,
+  removeCell,
+  removeRow,
+  resizeCell,
+  setParam,
+  setRowAlign,
+  setText,
+  widthLimit
+} from './ops';
 import type { CellWidth, Doc } from './types';
 import { fitWidths, snapWidth, stepAtMost } from './widths';
 
@@ -182,5 +196,31 @@ describe('block edits', () => {
     expect(beside.doc.rows[0].cells.map((c) => c.id)).toEqual(['r0c0', beside.id]);
     const below = duplicateCell(docOf([20, 20, 20, 20, 20]), 'r0c2');
     expect(below.doc.rows[1].cells.map((c) => c.id)).toEqual([below.id]);
+  });
+});
+
+describe('row operations', () => {
+  const rowIds = (doc: Doc) => doc.rows.map((r) => r.id);
+
+  it('moves a row to a gap counted before it is lifted out', () => {
+    const doc = docOf([50], [50], [50]);
+    expect(rowIds(moveRow(doc, 'r0', 3))).toEqual(['r1', 'r2', 'r0']);
+    expect(rowIds(moveRow(doc, 'r2', 0))).toEqual(['r2', 'r0', 'r1']);
+    expect(rowIds(moveRow(doc, 'r1', 3))).toEqual(['r0', 'r2', 'r1']);
+  });
+
+  it('leaves the doc alone when a row is dropped next to itself', () => {
+    const doc = docOf([50], [50]);
+    expect(moveRow(doc, 'r0', 0)).toBe(doc);
+    expect(moveRow(doc, 'r0', 1)).toBe(doc);
+  });
+
+  it('duplicates a row with new ids and removes rows', () => {
+    const doc = duplicateRow(docOf([50, 25], [100]), 'r0');
+    expect(doc.rows).toHaveLength(3);
+    expect(doc.rows[1].id).not.toBe('r0');
+    expect(doc.rows[1].cells.map((c) => c.width)).toEqual([50, 25]);
+    expect(doc.rows[1].cells[0].id).not.toBe('r0c0');
+    expect(rowIds(removeRow(doc, 'r1'))).toEqual(['r0', doc.rows[1].id]);
   });
 });

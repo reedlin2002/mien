@@ -16,6 +16,8 @@ interface Props {
   zoom: number;
   /** Insertion line, in the page's own (unzoomed) pixels. */
   indicator: Indicator | null;
+  /** What dropping there would do, e.g. "3 across · 33% each". */
+  dropLabel: string | null;
   /** A drag is over the empty page. */
   emptyTargeted: boolean;
 }
@@ -24,7 +26,8 @@ interface Props {
  * The README as it will look on the profile: GitHub's box, width, font size and
  * markdown CSS, in the color mode being previewed.
  */
-export function Canvas({ pageRef, zoom, indicator, emptyTargeted }: Props) {
+export function Canvas({ pageRef, zoom, indicator, dropLabel, emptyTargeted }: Props) {
+  const t = useT();
   const rows = useEditor((s) => s.doc.rows);
   const username = useEditor((s) => s.doc.username) || PREVIEW_USERNAME;
   const select = useEditor((s) => s.select);
@@ -32,7 +35,11 @@ export function Canvas({ pageRef, zoom, indicator, emptyTargeted }: Props) {
   const dark = mode === 'dark';
 
   return (
-    <div className="flex min-h-full justify-center px-6 py-8" onClick={() => select(null)}>
+    <div className="flex min-h-full flex-col items-center px-12 pt-5 pb-10" onClick={() => select(null)}>
+      <div className="mb-2.5 flex items-center justify-between font-sans text-xs text-muted" style={{ width: BOX_WIDTH * zoom }}>
+        <span>{t('canvasInfo')}</span>
+        <span className="font-mono">{Math.round(zoom * 100)}%</span>
+      </div>
       <div
         data-color-mode={mode}
         className={cx('h-fit rounded-md border shadow-sm', dark ? 'border-[#3d444d] bg-[#0d1117]' : 'border-[#d1d9e0] bg-white')}
@@ -57,26 +64,40 @@ export function Canvas({ pageRef, zoom, indicator, emptyTargeted }: Props) {
           {rows.length === 0 ? (
             <EmptyPage targeted={emptyTargeted} />
           ) : (
-            rows.map((row, i) => <RowView key={row.id} row={row} first={i === 0} />)
+            rows.map((row, i) => <RowView key={row.id} row={row} index={i} count={rows.length} />)
           )}
-          {indicator && <InsertionLine indicator={indicator} />}
+          {indicator && <InsertionLine indicator={indicator} label={dropLabel} />}
         </div>
       </div>
     </div>
   );
 }
 
-function InsertionLine({ indicator }: { indicator: Indicator }) {
+function InsertionLine({ indicator, label }: { indicator: Indicator; label: string | null }) {
   const horizontal = indicator.orientation === 'horizontal';
   return (
-    <div
-      className="pointer-events-none absolute z-40 rounded-full bg-blue-500 shadow-[0_0_0_2px_white]"
-      style={
-        horizontal
-          ? { left: indicator.x, top: indicator.y - 1.5, width: indicator.length, height: 3 }
-          : { left: indicator.x - 1.5, top: indicator.y, width: 3, height: indicator.length }
-      }
-    />
+    <>
+      <div
+        className="pointer-events-none absolute z-40 rounded-full bg-brand shadow-[0_0_0_2px_white]"
+        style={
+          horizontal
+            ? { left: indicator.x, top: indicator.y - 1.5, width: indicator.length, height: 3 }
+            : { left: indicator.x - 1.5, top: indicator.y, width: 3, height: indicator.length }
+        }
+      />
+      {label && (
+        <div
+          className="pointer-events-none absolute z-40 -translate-x-1/2 -translate-y-full rounded-lg bg-ink px-2.5 py-1.5 font-sans text-[13px] leading-none whitespace-nowrap text-white shadow-lg"
+          style={
+            horizontal
+              ? { left: indicator.x + indicator.length / 2, top: indicator.y - 8 }
+              : { left: indicator.x, top: indicator.y - 8 }
+          }
+        >
+          {label}
+        </div>
+      )}
+    </>
   );
 }
 
@@ -86,7 +107,7 @@ function EmptyPage({ targeted }: { targeted: boolean }) {
     <div
       className={cx(
         'flex flex-col items-center gap-5 rounded-xl border-2 border-dashed px-8 py-8 font-sans transition-colors',
-        targeted ? 'border-blue-500 bg-blue-500/5' : 'border-slate-400/40'
+        targeted ? 'border-brand bg-brand/5' : 'border-faint/40'
       )}
     >
       <div className="text-center">

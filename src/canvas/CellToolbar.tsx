@@ -95,11 +95,11 @@ export function CellToolbar({ cell, row, editing }: { cell: Cell; row: Row; edit
       onMouseDown={keepFocus}
       onClick={(e) => e.stopPropagation()}
       onDoubleClick={(e) => e.stopPropagation()}
-      className="absolute bottom-full left-1/2 z-30 mb-2 flex -translate-x-1/2 cursor-default flex-col items-center font-sans text-sm leading-none font-normal text-slate-700 select-none"
+      className="absolute bottom-full left-1/2 z-30 mb-2 flex -translate-x-1/2 cursor-default flex-col items-center font-sans text-sm leading-none font-normal text-ink select-none"
       contentEditable={false}
     >
       {panel === 'link' && (
-        <span className="mb-1 flex items-center gap-1 rounded-lg border border-slate-200 bg-white p-1 shadow-md">
+        <span className="mb-1 flex items-center gap-1 rounded-lg border border-line bg-white p-1 shadow-md">
           <input
             autoFocus
             value={url}
@@ -112,7 +112,7 @@ export function CellToolbar({ cell, row, editing }: { cell: Cell; row: Row; edit
               }
             }}
             placeholder={t('linkPlaceholder')}
-            className="w-64 rounded border border-slate-300 px-2 py-1 text-sm text-slate-900 outline-none focus:border-blue-500"
+            className="w-64 rounded border border-line px-2 py-1 text-sm text-ink outline-none focus:border-brand"
           />
           <Button label={t('done')} onClick={applyLink}>
             <CheckIcon />
@@ -120,20 +120,20 @@ export function CellToolbar({ cell, row, editing }: { cell: Cell; row: Row; edit
         </span>
       )}
       {panel === 'emoji' && (
-        <span className="mb-1 grid grid-cols-10 gap-0.5 rounded-lg border border-slate-200 bg-white p-1 shadow-md">
+        <span className="mb-1 grid grid-cols-10 gap-0.5 rounded-lg border border-line bg-white p-1 shadow-md">
           {EMOJI.map((emoji) => (
             <button
               key={emoji}
               type="button"
               onClick={() => document.execCommand('insertText', false, emoji)}
-              className="rounded p-1 text-base leading-none hover:bg-slate-100"
+              className="rounded p-1 text-base leading-none hover:bg-ground"
             >
               {emoji}
             </button>
           ))}
         </span>
       )}
-      <span className="flex items-center gap-0.5 rounded-lg border border-slate-200 bg-white p-1 whitespace-nowrap shadow-md">
+      <span className="flex items-center gap-0.5 rounded-[10px] border border-line bg-white p-1 whitespace-nowrap shadow-lg">
         {block.type === 'text' && (
           <>
             {KINDS.map((k) => (
@@ -153,9 +153,13 @@ export function CellToolbar({ cell, row, editing }: { cell: Cell; row: Row; edit
                 <Button label={t('emoji')} active={panel === 'emoji'} onClick={() => setPanel(panel === 'emoji' ? null : 'emoji')}>
                   <SmileIcon />
                 </Button>
-                <Button label={t('done')} onClick={() => editableFor(cell.id)?.blur()}>
-                  <CheckIcon />
-                </Button>
+                <button
+                  type="button"
+                  onClick={() => editableFor(cell.id)?.blur()}
+                  className="ml-0.5 h-[30px] rounded-[7px] bg-ink px-2.5 text-xs font-semibold text-white hover:bg-black"
+                >
+                  {t('done')}
+                </button>
               </>
             ) : (
               <Button label={t('editText')} onClick={() => startEditing(cell.id)}>
@@ -220,7 +224,7 @@ function Button({
       onClick={onClick}
       className={cx(
         'flex items-center justify-center rounded p-1.5',
-        active ? 'bg-blue-50 text-blue-600' : 'text-slate-600 hover:bg-slate-100',
+        active ? 'bg-brand-tint text-brand-ink' : 'text-muted hover:bg-ground',
         danger && 'hover:bg-red-50 hover:text-red-600'
       )}
     >
@@ -230,5 +234,5 @@ function Button({
 }
 
 function Divider() {
-  return <span className="mx-0.5 h-5 w-px bg-slate-200" />;
+  return <span className="mx-0.5 h-5 w-px bg-line" />;
 }

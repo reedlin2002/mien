@@ -77,7 +77,7 @@ export function ExportDialog({ onClose }: { onClose: () => void }) {
             onChange={(e) => setSetting({ username: normalizeUsername(e.target.value) })}
             placeholder="octocat"
             spellCheck={false}
-            className="w-full rounded-md border border-amber-300 bg-white px-2.5 py-1.5 text-slate-900 outline-none focus:border-blue-500"
+            className="w-full rounded-md border border-amber-300 bg-white px-2.5 py-1.5 text-ink outline-none focus:border-brand"
           />
         </label>
       )}
@@ -89,7 +89,7 @@ export function ExportDialog({ onClose }: { onClose: () => void }) {
           <button
             type="button"
             onClick={copy}
-            className="inline-flex items-center gap-2 rounded-md bg-blue-600 px-3.5 py-1.5 text-sm font-semibold text-white hover:bg-blue-700"
+            className="inline-flex items-center gap-2 rounded-md bg-ink px-3.5 py-1.5 text-sm font-semibold text-white hover:bg-black"
           >
             {copied === 'done' ? <CheckIcon /> : <CopyIcon />}
             {copied === 'done' ? t('copied') : t('copy')}
@@ -101,30 +101,30 @@ export function ExportDialog({ onClose }: { onClose: () => void }) {
             href={valid ? openUrl(user, status ?? { kind: 'unknown' }) : undefined}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-md border border-slate-300 px-3.5 py-1.5 text-sm font-semibold text-slate-800 hover:bg-slate-50"
+            className="inline-flex items-center gap-2 rounded-md border border-line px-3.5 py-1.5 text-sm font-semibold text-slate-800 hover:bg-paper"
           >
             {stepTwo.button}
             <ExternalIcon />
           </a>
-          <p className="mt-2 text-sm text-slate-600">{stepTwo.hint}</p>
+          <p className="mt-2 text-sm text-muted">{stepTwo.hint}</p>
         </Step>
         <Step n={3} title={t('step3')}>
-          <p className="text-sm text-slate-600">{t('step3Body')}</p>
+          <p className="text-sm text-muted">{t('step3Body')}</p>
         </Step>
       </ol>
 
-      <label className="mt-6 flex items-start gap-2 text-sm text-slate-600">
+      <label className="mt-6 flex items-start gap-2 text-sm text-muted">
         <input type="checkbox" checked={doc.marker} onChange={(e) => setSetting({ marker: e.target.checked })} className="mt-0.5" />
         <span>{t('marker', { app: APP_NAME })}</span>
       </label>
 
       <details className="mt-4 text-sm">
-        <summary className="cursor-pointer text-slate-500 select-none hover:text-slate-700">{t('showCode')}</summary>
+        <summary className="cursor-pointer text-muted select-none hover:text-ink">{t('showCode')}</summary>
         <textarea
           readOnly
           value={source}
           onFocus={(e) => e.currentTarget.select()}
-          className="mt-2 h-40 w-full resize-y rounded-md border border-slate-300 bg-slate-50 p-2 font-mono text-xs text-slate-800"
+          className="mt-2 h-40 w-full resize-y rounded-md border border-line bg-paper p-2 font-mono text-xs text-slate-800"
         />
       </details>
     </Modal>
@@ -134,11 +134,11 @@ export function ExportDialog({ onClose }: { onClose: () => void }) {
 function Step({ n, title, children }: { n: number; title: string; children: ReactNode }) {
   return (
     <li className="flex gap-3">
-      <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-slate-900 text-xs font-semibold text-white">
+      <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-ink text-xs font-semibold text-white">
         {n}
       </span>
       <div className="min-w-0 flex-1">
-        <p className="mb-2 font-medium text-slate-900">{title}</p>
+        <p className="mb-2 font-medium text-ink">{title}</p>
         {children}
       </div>
     </li>

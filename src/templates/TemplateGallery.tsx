@@ -44,14 +44,14 @@ function TemplateCard({ template, onClick }: { template: Template; onClick: () =
     <button
       type="button"
       onClick={onClick}
-      className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white text-left shadow-sm transition hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md"
+      className="group flex flex-col overflow-hidden rounded-xl border border-line bg-white text-left shadow-sm transition hover:-translate-y-0.5 hover:border-brand hover:shadow-md"
     >
-      <div className={cx('h-44 overflow-hidden border-b border-slate-200', mode === 'dark' ? 'bg-[#0d1117]' : 'bg-white')}>
+      <div className={cx('h-44 overflow-hidden border-b border-line', mode === 'dark' ? 'bg-[#0d1117]' : 'bg-white')}>
         <DocPreview doc={doc} mode={mode} width={320} />
       </div>
       <div className="px-3 py-2.5">
-        <div className="text-sm font-semibold text-slate-900">{zh ? template.name_zh : template.name}</div>
-        <div className="text-xs text-slate-500">{zh ? template.description_zh : template.description}</div>
+        <div className="text-sm font-semibold text-ink">{zh ? template.name_zh : template.name}</div>
+        <div className="text-xs text-muted">{zh ? template.description_zh : template.description}</div>
       </div>
     </button>
   );

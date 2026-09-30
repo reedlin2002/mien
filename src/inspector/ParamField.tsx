@@ -31,7 +31,7 @@ export function ParamField({ def, param, block, cellId }: Props) {
       return null;
     case 'boolean':
       return (
-        <label className="flex cursor-pointer items-center justify-between gap-3 py-1 text-sm text-slate-700">
+        <label className="flex cursor-pointer items-center justify-between gap-3 py-1 text-sm text-ink">
           {label}
           <Switch checked={value === true || value === 'true'} onChange={set} />
         </label>
@@ -83,7 +83,7 @@ export function ParamField({ def, param, block, cellId }: Props) {
 function Field({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <span className="text-xs font-medium text-slate-500">{label}</span>
+      <span className="text-xs font-medium text-muted">{label}</span>
       {children}
     </div>
   );
@@ -96,7 +96,7 @@ function Switch({ checked, onChange }: { checked: boolean; onChange: (v: boolean
       role="switch"
       aria-checked={checked}
       onClick={() => onChange(!checked)}
-      className={cx('relative h-5 w-9 shrink-0 rounded-full transition', checked ? 'bg-blue-600' : 'bg-slate-300')}
+      className={cx('relative h-5 w-9 shrink-0 rounded-full transition', checked ? 'bg-ink' : 'bg-line')}
     >
       <span className={cx('absolute top-0.5 size-4 rounded-full bg-white shadow transition-all', checked ? 'left-4.5' : 'left-0.5')} />
     </button>
@@ -114,7 +114,7 @@ function Chips({ options, value, onPick }: { options: NonNullable<ParamDef['opti
           onClick={() => onPick(o.value)}
           className={cx(
             'rounded-md border px-2 py-1 text-xs',
-            o.value === value ? 'border-blue-500 bg-blue-50 text-blue-700' : 'border-slate-200 text-slate-600 hover:border-slate-400'
+            o.value === value ? 'border-brand bg-brand-tint text-brand-text' : 'border-line text-muted hover:border-faint'
           )}
         >
           {t.registry(o.label ?? o.value)}
@@ -139,13 +139,13 @@ function PreviewChoices({ def, param, block, value, onPick }: Omit<Props, 'cellI
           onClick={() => onPick(o.value)}
           className={cx(
             'flex flex-col items-center gap-1 rounded-lg border p-1 text-[11px] transition',
-            o.value === value ? 'border-blue-500 bg-blue-50 text-blue-700 ring-1 ring-blue-500' : 'border-slate-200 text-slate-600 hover:border-slate-400'
+            o.value === value ? 'border-brand bg-brand-tint text-brand-text ring-1 ring-brand' : 'border-line text-muted hover:border-faint'
           )}
         >
           <span
             className={cx(
               'flex h-14 w-full items-center justify-center overflow-hidden rounded',
-              mode === 'dark' ? 'bg-[#0d1117]' : 'bg-slate-50'
+              mode === 'dark' ? 'bg-[#0d1117]' : 'bg-paper'
             )}
           >
             <WidgetImage
@@ -176,24 +176,24 @@ function MultiPicker({ param, value, onChange }: { param: ParamDef; value: strin
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex min-h-9 flex-wrap gap-1 rounded-md bg-slate-50 p-1.5">
+      <div className="flex min-h-9 flex-wrap gap-1 rounded-md bg-paper p-1.5">
         {chosen.map((v) => (
           <button key={v} type="button" title={v} onClick={() => toggle(v)} className="group relative">
             {thumb(v) ? <img src={thumb(v)} alt={v} className="size-7" /> : <span className="text-xs">{v}</span>}
-            <span className="absolute -top-1 -right-1 hidden size-3.5 items-center justify-center rounded-full bg-slate-700 text-white group-hover:flex">
+            <span className="absolute -top-1 -right-1 hidden size-3.5 items-center justify-center rounded-full bg-ink text-white group-hover:flex">
               <CloseIcon width={9} height={9} />
             </span>
           </button>
         ))}
       </div>
-      <span className="text-[11px] text-slate-500">{t('selected', { n: chosen.length })}</span>
-      <label className="flex items-center gap-2 rounded-md border border-slate-300 px-2 py-1 text-slate-400 focus-within:border-blue-500">
+      <span className="text-[11px] text-muted">{t('selected', { n: chosen.length })}</span>
+      <label className="flex items-center gap-2 rounded-md border border-line px-2 py-1 text-faint focus-within:border-brand">
         <SearchIcon width={14} height={14} />
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={t('searchIcons')}
-          className="w-full bg-transparent text-xs text-slate-900 outline-none"
+          className="w-full bg-transparent text-xs text-ink outline-none"
         />
       </label>
       <div className="grid max-h-56 grid-cols-7 gap-1 overflow-y-auto">
@@ -205,7 +205,7 @@ function MultiPicker({ param, value, onChange }: { param: ParamDef; value: strin
             onClick={() => toggle(o.value)}
             className={cx(
               'rounded-md p-0.5 transition',
-              chosen.includes(o.value) ? 'bg-blue-100 ring-2 ring-blue-500' : 'opacity-70 hover:bg-slate-100 hover:opacity-100'
+              chosen.includes(o.value) ? 'bg-brand-tint ring-2 ring-brand' : 'opacity-70 hover:bg-ground hover:opacity-100'
             )}
           >
             {thumb(o.value) ? <img src={thumb(o.value)} alt={o.value} loading="lazy" className="size-full" /> : o.value}
@@ -231,14 +231,14 @@ function ListEditor({ separator, value, onChange }: { separator: string; value: 
             value={line}
             onChange={(e) => update(i, e.target.value)}
             onBlur={flush}
-            className="w-full rounded-md border border-slate-300 px-2 py-1 text-sm text-slate-900 outline-none focus:border-blue-500"
+            className="w-full rounded-md border border-line px-2 py-1 text-sm text-ink outline-none focus:border-brand"
           />
           <button
             type="button"
             aria-label="Remove"
             disabled={draft.length <= 1}
             onClick={() => change(draft.filter((_, j) => j !== i))}
-            className="rounded p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-700 disabled:opacity-30"
+            className="rounded p-1 text-faint hover:bg-ground hover:text-ink disabled:opacity-30"
           >
             <CloseIcon />
           </button>
@@ -247,7 +247,7 @@ function ListEditor({ separator, value, onChange }: { separator: string; value: 
       <button
         type="button"
         onClick={() => change([...draft, ''])}
-        className="flex items-center gap-1 self-start rounded px-1 py-0.5 text-xs text-blue-600 hover:bg-blue-50"
+        className="flex items-center gap-1 self-start rounded px-1 py-0.5 text-xs text-brand-text hover:bg-brand-tint"
       >
         <PlusIcon width={12} height={12} /> {t('addLine')}
       </button>
@@ -268,15 +268,15 @@ function ColorInput({ value, onChange }: { value: string; onChange: (v: string) 
           value={hex}
           onChange={(e) => change(e.target.value.slice(1))}
           onBlur={flush}
-          className="h-8 w-10 cursor-pointer rounded border border-slate-300 bg-white p-0.5"
+          className="h-8 w-10 cursor-pointer rounded border border-line bg-white p-0.5"
         />
-        <span className="flex items-center rounded-md border border-slate-300 px-2 py-1 text-sm focus-within:border-blue-500">
-          <span className="text-slate-400">#</span>
+        <span className="flex items-center rounded-md border border-line px-2 py-1 text-sm focus-within:border-brand">
+          <span className="text-faint">#</span>
           <input
             value={draft}
             onChange={(e) => change(e.target.value.replace(/[^0-9a-f]/gi, '').slice(0, 6))}
             onBlur={flush}
-            className="w-16 bg-transparent font-mono text-slate-900 outline-none"
+            className="w-16 bg-transparent font-mono text-ink outline-none"
           />
         </span>
       </div>
@@ -287,7 +287,7 @@ function ColorInput({ value, onChange }: { value: string; onChange: (v: string) 
             type="button"
             aria-label={`#${s}`}
             onClick={() => onChange(s)}
-            className={cx('size-5 rounded-full border border-slate-300', draft.toLowerCase() === s.toLowerCase() && 'ring-2 ring-blue-500 ring-offset-1')}
+            className={cx('size-5 rounded-full border border-line', draft.toLowerCase() === s.toLowerCase() && 'ring-2 ring-brand ring-offset-1')}
             style={{ background: `#${s}` }}
           />
         ))}
@@ -308,9 +308,9 @@ function NumberInput({ param, value, onChange }: { param: ParamDef; value: numbe
         value={draft}
         onChange={(e) => change(Number(e.target.value))}
         onPointerUp={flush}
-        className="flex-1 accent-blue-600"
+        className="flex-1 accent-brand"
       />
-      <span className="w-12 text-right font-mono text-xs text-slate-600">{draft}</span>
+      <span className="w-12 text-right font-mono text-xs text-muted">{draft}</span>
     </div>
   );
 }
@@ -324,7 +324,7 @@ function TextInput({ value, placeholder, onChange }: { value: string; placeholde
       onChange={(e) => change(e.target.value)}
       onBlur={flush}
       onKeyDown={(e) => e.key === 'Enter' && flush()}
-      className="w-full rounded-md border border-slate-300 px-2 py-1.5 text-sm text-slate-900 outline-none focus:border-blue-500"
+      className="w-full rounded-md border border-line px-2 py-1.5 text-sm text-ink outline-none focus:border-brand"
     />
   );
 }

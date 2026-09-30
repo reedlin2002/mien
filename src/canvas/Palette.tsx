@@ -1,23 +1,24 @@
 import { useDraggable } from '@dnd-kit/core';
-import { useState } from 'react';
+import { useState, type ComponentType, type SVGProps } from 'react';
 import { useT, type MessageKey } from '../i18n';
 import { insertCell } from '../model/ops';
 import { useEditor } from '../store/editor';
+import { useUi } from '../store/ui';
 import { cx } from '../ui/cx';
-import { SearchIcon } from '../ui/icons';
+import { BadgeIcon, ChartIcon, GridIcon, HeaderIcon, ImageIcon, SearchIcon, TextIcon } from '../ui/icons';
 import { getWidget } from '../widgets/registry';
 import { PREVIEW_USERNAME } from '../widgets/urls';
 import type { DragData } from './dragData';
 import { createFromPalette, PALETTE, SECTIONS, type PaletteItem, type Section } from './paletteItems';
 import { WidgetImage } from './WidgetImage';
 
-const SECTION_LABEL: Record<Section, MessageKey> = {
-  text: 'sectionText',
-  header: 'sectionHeader',
-  stats: 'sectionStats',
-  skills: 'sectionSkills',
-  badges: 'sectionBadges',
-  media: 'sectionMedia'
+const SECTION_INFO: Record<Section, { label: MessageKey; Icon: ComponentType<SVGProps<SVGSVGElement>> }> = {
+  text: { label: 'sectionText', Icon: TextIcon },
+  header: { label: 'sectionHeader', Icon: HeaderIcon },
+  stats: { label: 'sectionStats', Icon: ChartIcon },
+  skills: { label: 'sectionSkills', Icon: GridIcon },
+  badges: { label: 'sectionBadges', Icon: BadgeIcon },
+  media: { label: 'sectionMedia', Icon: ImageIcon }
 };
 
 const TEXT_LABEL: Record<string, MessageKey> = { 'text:h1': 'textH1', 'text:h2': 'textH2', 'text:h3': 'textH3', 'text:p': 'textP' };
@@ -28,48 +29,72 @@ function itemText(item: PaletteItem, t: ReturnType<typeof useT>): { name: string
   return { name: t.registry(def?.name), description: t.registry(def?.description) };
 }
 
+/** A rail of kinds on the far left, and the chosen kind's items beside it. Search spans every kind. */
 export function Palette() {
   const t = useT();
+  const section = useUi((s) => s.paletteSection);
+  const setUi = useUi((s) => s.set);
+  const username = useEditor((s) => s.doc.username) || PREVIEW_USERNAME;
   const [query, setQuery] = useState('');
   const q = query.trim().toLowerCase();
-  const matches = PALETTE.filter((item) => {
-    if (!q) return true;
-    const { name, description } = itemText(item, t);
-    return `${name} ${description} ${item.id}`.toLowerCase().includes(q);
-  });
+  const items = q
+    ? PALETTE.filter((item) => {
+        const { name, description } = itemText(item, t);
+        return `${name} ${description} ${item.id}`.toLowerCase().includes(q);
+      })
+    : PALETTE.filter((item) => item.section === section);
 
   return (
-    <aside className="flex w-72 shrink-0 flex-col border-r border-slate-200 bg-white">
-      <div className="border-b border-slate-200 p-3">
-        <label className="flex items-center gap-2 rounded-md border border-slate-300 px-2.5 py-1.5 text-slate-400 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500/20">
-          <SearchIcon />
-          <input
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder={t('search')}
-            className="w-full bg-transparent text-sm text-slate-900 outline-none"
-          />
-        </label>
-      </div>
-      <div className="flex flex-1 flex-col gap-5 overflow-y-auto p-3">
-        {SECTIONS.map((section) => {
-          const items = matches.filter((item) => item.section === section);
-          if (items.length === 0) return null;
+    <>
+      <nav aria-label={t('search')} className="flex w-[72px] shrink-0 flex-col items-center gap-1 border-r border-line bg-white pt-3">
+        {SECTIONS.map((s) => {
+          const { label, Icon } = SECTION_INFO[s];
+          const active = !q && s === section;
           return (
-            <section key={section}>
-              <h2 className="mb-2 px-1 text-[11px] font-semibold tracking-wider text-slate-500 uppercase">{t(SECTION_LABEL[section])}</h2>
-              <div className={cx('grid gap-2', section === 'text' ? 'grid-cols-3' : 'grid-cols-2')}>
-                {items.map((item) => (
-                  <PaletteCard key={item.id} item={item} />
-                ))}
-              </div>
-            </section>
+            <button
+              key={s}
+              type="button"
+              aria-current={active}
+              onClick={() => {
+                setQuery('');
+                setUi({ paletteSection: s });
+              }}
+              className={cx(
+                'flex h-14 w-[58px] flex-col items-center justify-center gap-1 rounded-[10px] text-[11px]',
+                active ? 'bg-brand-tint font-semibold text-brand-ink' : 'text-muted hover:bg-ground hover:text-ink'
+              )}
+            >
+              <Icon width={20} height={20} />
+              {t(label)}
+            </button>
           );
         })}
-        {matches.length === 0 && <p className="px-1 text-sm text-slate-500">{t('noMatches', { q: query })}</p>}
-        <p className="mt-auto px-1 text-xs leading-relaxed text-slate-500">{t('paletteHint')}</p>
-      </div>
-    </aside>
+      </nav>
+      <aside className="flex w-64 shrink-0 flex-col border-r border-line bg-white">
+        <div className="px-3.5 pt-3.5 pb-2.5">
+          <label className="flex h-9 items-center gap-2 rounded-[9px] border border-line px-2.5 text-muted focus-within:border-brand focus-within:ring-3 focus-within:ring-brand/20">
+            <SearchIcon width={15} height={15} />
+            <input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder={t('searchAll', { n: PALETTE.length })}
+              className="w-full bg-transparent text-sm text-ink outline-none"
+            />
+          </label>
+        </div>
+        <div className="flex items-baseline justify-between px-3.5 pb-2">
+          <span className="text-[13px] font-semibold text-ink">{q ? t('results') : t(SECTION_INFO[section].label)}</span>
+          <span className="truncate pl-2 text-xs text-muted">{t('previewing', { user: username })}</span>
+        </div>
+        <div className="grid flex-1 auto-rows-min grid-cols-2 gap-2.5 overflow-y-auto px-3.5 pb-3.5">
+          {items.map((item) => (
+            <PaletteCard key={item.id} item={item} />
+          ))}
+          {items.length === 0 && <p className="col-span-2 text-sm text-muted">{t('noMatches', { q: query })}</p>}
+        </div>
+        <p className="border-t border-line p-3.5 text-xs leading-relaxed text-muted">{t('paletteHint')}</p>
+      </aside>
+    </>
   );
 }
 
@@ -100,12 +125,12 @@ function PaletteCard({ item }: { item: PaletteItem }) {
       onClick={addAtBottom}
       title={description || name}
       className={cx(
-        'group flex cursor-grab touch-none flex-col gap-1.5 rounded-lg border border-slate-200 p-1.5 text-left transition hover:border-blue-400 hover:shadow-sm',
+        'flex cursor-grab touch-none flex-col gap-2 rounded-xl border border-line bg-white p-2 text-left transition hover:-translate-y-px hover:border-brand hover:shadow-sm',
         isDragging && 'opacity-50'
       )}
     >
       <PaletteThumb item={item} />
-      <span className="truncate px-0.5 text-xs font-medium text-slate-700">{name}</span>
+      <span className="truncate px-0.5 text-[13px] font-medium text-ink">{name}</span>
     </button>
   );
 }
@@ -115,10 +140,10 @@ export function PaletteThumb({ item }: { item: PaletteItem }) {
   if (item.section === 'text') {
     const kind = item.id.slice('text:'.length);
     return (
-      <span className="flex h-12 items-center justify-center rounded bg-slate-50 font-semibold text-slate-700">
-        {kind === 'h1' && <span className="text-xl">H1</span>}
-        {kind === 'h2' && <span className="text-base">H2</span>}
-        {kind === 'p' && <span className="text-xs font-normal">Aa ¶</span>}
+      <span className="flex h-16 items-center justify-center rounded-lg bg-paper font-display font-extrabold text-ink">
+        {kind === 'h1' && <span className="text-2xl">H1</span>}
+        {kind === 'h2' && <span className="text-lg">H2</span>}
+        {kind === 'p' && <span className="font-sans text-sm font-normal text-muted">Aa ¶</span>}
       </span>
     );
   }
@@ -126,9 +151,9 @@ export function PaletteThumb({ item }: { item: PaletteItem }) {
   if (!def) return null;
   const needsInput = def.params.some((p) => p.required);
   return (
-    <span className="flex h-16 items-center justify-center overflow-hidden rounded bg-slate-50 p-1">
+    <span className="flex h-16 items-center justify-center overflow-hidden rounded-lg bg-paper p-1.5">
       {needsInput ? (
-        <span className="text-[10px] text-slate-400">{def.id === 'image' ? '🖼️ GIF' : def.name}</span>
+        <span className="text-center text-[11px] leading-tight text-muted">{def.id === 'image' ? 'GIF / PNG' : def.name}</span>
       ) : (
         <WidgetImage def={def} params={{}} username={username} natural={item.width === 'auto'} className="max-h-full object-contain" />
       )}

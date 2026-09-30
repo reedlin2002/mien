@@ -119,7 +119,7 @@ function WidgetBody({ block, natural, inline }: { block: WidgetBlock; natural: b
 
   if (!def) {
     return (
-      <span className="flex h-16 items-center justify-center rounded bg-slate-500/10 text-xs text-slate-500">
+      <span className="flex h-16 items-center justify-center rounded bg-muted/10 text-xs text-muted">
         {t('unknownWidget')}
       </span>
     );
@@ -130,7 +130,7 @@ function WidgetBody({ block, natural, inline }: { block: WidgetBlock; natural: b
     // Not exported until filled in, so it shows as a dashed placeholder instead.
     return (
       <span
-        className="flex w-full flex-col items-center justify-center gap-1 rounded-md border-2 border-dashed border-slate-400/60 p-3 text-center text-xs leading-snug text-slate-500"
+        className="flex w-full flex-col items-center justify-center gap-1 rounded-md border-2 border-dashed border-faint/60 p-3 text-center text-xs leading-snug text-muted"
         style={{ aspectRatio: natural ? undefined : def.aspectRatio, minHeight: 64 }}
       >
         <span className="font-semibold">{t.registry(def.name)}</span>
@@ -219,7 +219,7 @@ function TextBody({ cell, block, editing, align, first }: TextBodyProps) {
         stopEditing();
       }}
       className={cx(
-        'data-[empty=true]:before:text-slate-400 data-[empty=true]:before:content-[attr(data-placeholder)]',
+        'data-[empty=true]:before:text-faint data-[empty=true]:before:content-[attr(data-placeholder)]',
         editing && 'cursor-text outline-none select-text'
       )}
       style={{ textAlign: align, marginTop: first ? 0 : undefined }}

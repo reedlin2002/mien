@@ -1,6 +1,6 @@
 import type { PointerEvent as ReactPointerEvent } from 'react';
 import { resizeCell, widthLimit } from '../model/ops';
-import type { Cell, CellWidth, Row } from '../model/types';
+import { WIDTH_STEPS, type Cell, type CellWidth, type Row } from '../model/types';
 import { snapWidth } from '../model/widths';
 import { useEditor } from '../store/editor';
 import { cx } from '../ui/cx';
@@ -21,30 +21,54 @@ interface Props {
 
 /** Outline, resize handles, width readout and floating toolbar drawn over a cell. */
 export function SelectionChrome({ cell, row, selected, editing, resizable, preview, onPreview }: Props) {
+  const width = preview ?? cell.width;
   return (
     <>
       <span
         className={cx(
           'pointer-events-none absolute inset-0 z-10 rounded-sm',
-          selected ? 'ring-2 ring-blue-500' : 'ring-blue-400/70 group-hover:ring-1'
+          selected ? 'ring-2 ring-brand' : 'ring-brand/70 group-hover:ring-1'
         )}
       />
       {selected && (
         <>
           <CellToolbar cell={cell} row={row} editing={editing} />
-          {resizable &&
-            !editing &&
-            (['nw', 'ne', 'sw', 'se'] as const).map((corner) => (
-              <ResizeHandle key={corner} corner={corner} cell={cell} row={row} onPreview={onPreview} />
-            ))}
-          {preview !== null && (
-            <span className="pointer-events-none absolute top-1/2 left-1/2 z-20 -translate-1/2 rounded bg-blue-600 px-2 py-0.5 text-xs font-semibold whitespace-nowrap text-white shadow">
-              {preview === 'auto' ? 'auto' : `${preview}%`}
-            </span>
+          {resizable && !editing && (
+            <>
+              {(['nw', 'ne', 'sw', 'se'] as const).map((corner) => (
+                <ResizeHandle key={corner} corner={corner} cell={cell} row={row} onPreview={onPreview} />
+              ))}
+              {preview === null && (
+                // Below the cell, so it never covers a small badge.
+                <span className="pointer-events-none absolute top-full left-0 z-20 mt-1.5 rounded-[5px] bg-brand px-1.5 py-0.5 font-mono text-[11px] leading-none font-medium text-brand-ink">
+                  {width === 'auto' ? 'auto' : `${width}%`}
+                </span>
+              )}
+            </>
           )}
+          {preview !== null && <SnapRuler value={preview} limit={widthLimit(row, cell.id)} />}
         </>
       )}
     </>
+  );
+}
+
+/** The steps a cell can snap to while it's being resized, with the current one lit. */
+function SnapRuler({ value, limit }: { value: CellWidth; limit: number }) {
+  return (
+    <span className="pointer-events-none absolute top-full left-1/2 z-30 mt-3 flex -translate-x-1/2 items-center gap-0.5 rounded-lg bg-ink p-1 font-mono text-[11px] leading-none whitespace-nowrap shadow-lg">
+      {WIDTH_STEPS.map((step) => (
+        <span
+          key={step}
+          className={cx(
+            'rounded-[5px] px-1.5 py-1',
+            step === value ? 'bg-brand font-semibold text-brand-ink' : step > limit ? 'text-white/25' : 'text-white/75'
+          )}
+        >
+          {step}
+        </span>
+      ))}
+    </span>
   );
 }
 
@@ -111,10 +135,7 @@ function ResizeHandle({ corner, cell, row, onPreview }: HandleProps) {
   return (
     <span
       onPointerDown={start}
-      className={cx(
-        'absolute z-20 size-3 rounded-[2px] border-2 border-blue-500 bg-white shadow-sm',
-        CORNER_POSITION[corner]
-      )}
+      className={cx('absolute z-20 size-3 rounded-[3px] border-2 border-brand bg-white shadow-sm', CORNER_POSITION[corner])}
     />
   );
 }
