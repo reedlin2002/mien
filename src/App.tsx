@@ -71,6 +71,7 @@ export function App() {
 
   return (
     <div className="flex h-screen flex-col bg-slate-100 text-slate-900">
+      <p className="bg-amber-100 px-4 py-2 text-center text-sm text-amber-900 lg:hidden">{t('narrow')}</p>
       <Toolbar onExport={() => setDialog('export')} onTemplates={() => setDialog('templates')} />
       <Workspace />
       {dialog === 'export' && <ExportDialog onClose={() => setDialog(null)} />}

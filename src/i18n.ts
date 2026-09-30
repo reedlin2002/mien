@@ -88,7 +88,8 @@ const en = {
   step3Body: 'Select everything in GitHub’s editor, paste (Ctrl+V / ⌘V), then press Commit changes.',
   marker: 'Add an invisible “made with {app}” note. It never shows on your profile; it only lets us count how many people use this.',
   showCode: 'Show the code',
-  skipped: '{n} widget(s) still need setting up and are left out.'
+  skipped: '{n} widget(s) still need setting up and are left out.',
+  narrow: 'This editor is made for a computer screen. On a phone, things will be cramped.'
 };
 
 export type MessageKey = keyof typeof en;
@@ -180,7 +181,8 @@ const zh: Record<MessageKey, string> = {
   step3Body: '在 GitHub 的編輯器全選、貼上（Ctrl+V / ⌘V），然後按 Commit changes。',
   marker: '加上一段看不見的「made with {app}」註解。它不會顯示在你的個人頁，只是讓我們能算有多少人在用。',
   showCode: '顯示程式碼',
-  skipped: '有 {n} 個小工具還沒設定好，不會匯出。'
+  skipped: '有 {n} 個小工具還沒設定好，不會匯出。',
+  narrow: '這個編輯器是為電腦螢幕設計的，在手機上會很擠。'
 };
 
 // Widget names, descriptions and setting labels come from the registry in English.
