@@ -1,0 +1,50 @@
+{
+  "$schema": "../widget.schema.json",
+  "id": "followers-badge",
+  "name": "Followers",
+  "description": "Your follower count, with a follow link.",
+  "category": "badges",
+  "author": "shields.io",
+  "homepage": "https://shields.io",
+  "urlTemplate": "https://img.shields.io/github/followers/{username}?label={label}&style={style}&logo=github",
+  "linkTemplate": "https://github.com/{username}?tab=followers",
+  "defaultWidth": "auto",
+  "aspectRatio": 4.8,
+  "params": [
+    {
+      "key": "username",
+      "type": "username"
+    },
+    {
+      "key": "label",
+      "type": "text",
+      "label": "Label",
+      "default": "Follow"
+    },
+    {
+      "key": "style",
+      "type": "enum",
+      "label": "Style",
+      "default": "social",
+      "preview": true,
+      "options": [
+        {
+          "value": "social",
+          "label": "Social"
+        },
+        {
+          "value": "flat",
+          "label": "Flat"
+        },
+        {
+          "value": "flat-square",
+          "label": "Square"
+        },
+        {
+          "value": "for-the-badge",
+          "label": "Bold"
+        }
+      ]
+    }
+  ]
+}

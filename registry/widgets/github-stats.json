@@ -1,16 +1,101 @@
 {
+  "$schema": "../widget.schema.json",
   "id": "github-stats",
   "name": "GitHub Stats",
+  "description": "Stars, commits, PRs and issues, with a rank.",
+  "category": "stats",
   "author": "anuraghazra",
   "homepage": "https://github.com/anuraghazra/github-readme-stats",
-  "urlTemplate": "https://github-readme-stats.vercel.app/api?username={username}&show_icons={show_icons}&hide_border={hide_border}&theme={theme}",
+  "urlTemplate": "https://github-readme-stats.vercel.app/api?username={username}&show_icons={show_icons}&hide_border={hide_border}&hide_rank={hide_rank}&include_all_commits={include_all_commits}&theme={theme}",
   "linkTemplate": "https://github.com/{username}",
   "defaultWidth": 50,
   "aspectRatio": 2.395,
   "params": [
-    { "key": "username", "type": "username" },
-    { "key": "show_icons", "type": "boolean", "label": "Icons", "default": true },
-    { "key": "hide_border", "type": "boolean", "label": "Hide border", "default": false }
+    {
+      "key": "username",
+      "type": "username"
+    },
+    {
+      "key": "theme",
+      "type": "enum",
+      "label": "Theme",
+      "default": "auto",
+      "preview": true,
+      "options": [
+        {
+          "value": "auto",
+          "label": "Auto (light/dark)"
+        },
+        {
+          "value": "transparent",
+          "label": "Transparent"
+        },
+        {
+          "value": "radical",
+          "label": "Radical"
+        },
+        {
+          "value": "tokyonight",
+          "label": "Tokyo Night"
+        },
+        {
+          "value": "dracula",
+          "label": "Dracula"
+        },
+        {
+          "value": "gruvbox",
+          "label": "Gruvbox"
+        },
+        {
+          "value": "onedark",
+          "label": "One Dark"
+        },
+        {
+          "value": "synthwave",
+          "label": "Synthwave"
+        },
+        {
+          "value": "nord",
+          "label": "Nord"
+        },
+        {
+          "value": "catppuccin_mocha",
+          "label": "Catppuccin"
+        },
+        {
+          "value": "rose_pine",
+          "label": "Rosé Pine"
+        }
+      ]
+    },
+    {
+      "key": "show_icons",
+      "type": "boolean",
+      "label": "Icons",
+      "default": true
+    },
+    {
+      "key": "hide_border",
+      "type": "boolean",
+      "label": "Hide border",
+      "default": false
+    },
+    {
+      "key": "hide_rank",
+      "type": "boolean",
+      "label": "Hide rank",
+      "default": false
+    },
+    {
+      "key": "include_all_commits",
+      "type": "boolean",
+      "label": "Count all commits",
+      "default": false
+    }
   ],
-  "theme": { "param": "theme", "light": "default", "dark": "github_dark" }
+  "theme": {
+    "param": "theme",
+    "light": "default",
+    "dark": "github_dark"
+  }
 }

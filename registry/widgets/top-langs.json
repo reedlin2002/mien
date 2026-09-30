@@ -1,0 +1,121 @@
+{
+  "$schema": "../widget.schema.json",
+  "id": "top-langs",
+  "name": "Top Languages",
+  "description": "The languages you write most.",
+  "category": "stats",
+  "author": "anuraghazra",
+  "homepage": "https://github.com/anuraghazra/github-readme-stats",
+  "urlTemplate": "https://github-readme-stats.vercel.app/api/top-langs/?username={username}&layout={layout}&langs_count={langs_count}&hide_border={hide_border}&theme={theme}",
+  "linkTemplate": "https://github.com/{username}?tab=repositories",
+  "defaultWidth": 33,
+  "aspectRatio": 2.143,
+  "params": [
+    {
+      "key": "username",
+      "type": "username"
+    },
+    {
+      "key": "layout",
+      "type": "enum",
+      "label": "Layout",
+      "default": "compact",
+      "preview": true,
+      "options": [
+        {
+          "value": "compact",
+          "label": "Compact"
+        },
+        {
+          "value": "normal",
+          "label": "Bars"
+        },
+        {
+          "value": "donut",
+          "label": "Donut"
+        },
+        {
+          "value": "donut-vertical",
+          "label": "Donut (tall)"
+        },
+        {
+          "value": "pie",
+          "label": "Pie"
+        }
+      ]
+    },
+    {
+      "key": "theme",
+      "type": "enum",
+      "label": "Theme",
+      "default": "auto",
+      "preview": true,
+      "options": [
+        {
+          "value": "auto",
+          "label": "Auto (light/dark)"
+        },
+        {
+          "value": "transparent",
+          "label": "Transparent"
+        },
+        {
+          "value": "radical",
+          "label": "Radical"
+        },
+        {
+          "value": "tokyonight",
+          "label": "Tokyo Night"
+        },
+        {
+          "value": "dracula",
+          "label": "Dracula"
+        },
+        {
+          "value": "gruvbox",
+          "label": "Gruvbox"
+        },
+        {
+          "value": "onedark",
+          "label": "One Dark"
+        },
+        {
+          "value": "synthwave",
+          "label": "Synthwave"
+        },
+        {
+          "value": "nord",
+          "label": "Nord"
+        },
+        {
+          "value": "catppuccin_mocha",
+          "label": "Catppuccin"
+        },
+        {
+          "value": "rose_pine",
+          "label": "Rosé Pine"
+        }
+      ]
+    },
+    {
+      "key": "langs_count",
+      "type": "number",
+      "label": "Languages",
+      "default": 6,
+      "min": 2,
+      "max": 10,
+      "step": 1
+    },
+    {
+      "key": "hide_border",
+      "type": "boolean",
+      "label": "Hide border",
+      "default": false
+    }
+  ],
+  "theme": {
+    "param": "theme",
+    "light": "default",
+    "dark": "github_dark"
+  }
+}

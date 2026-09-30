@@ -1,0 +1,128 @@
+{
+  "$schema": "../widget.schema.json",
+  "id": "typing-svg",
+  "name": "Typing text",
+  "description": "Lines that type themselves out, one after another.",
+  "category": "header",
+  "author": "DenverCoder1",
+  "homepage": "https://github.com/DenverCoder1/readme-typing-svg",
+  "urlTemplate": "https://readme-typing-svg.demolab.com?font={font}&weight={weight}&size={size}&duration={duration}&pause={pause}&color={color}&center={center}&vCenter=true&width={width}&height={height}&lines={lines}",
+  "defaultWidth": 75,
+  "aspectRatio": 12,
+  "params": [
+    {
+      "key": "lines",
+      "type": "list",
+      "label": "Lines",
+      "separator": ";",
+      "default": "Hi, I'm {username} 👋;I love building things;Welcome to my profile!"
+    },
+    {
+      "key": "font",
+      "type": "enum",
+      "label": "Font",
+      "default": "Fira Code",
+      "preview": true,
+      "options": [
+        {
+          "value": "Fira Code"
+        },
+        {
+          "value": "JetBrains Mono"
+        },
+        {
+          "value": "Press Start 2P"
+        },
+        {
+          "value": "Pacifico"
+        },
+        {
+          "value": "Montserrat"
+        },
+        {
+          "value": "Caveat"
+        },
+        {
+          "value": "Orbitron"
+        }
+      ]
+    },
+    {
+      "key": "color",
+      "type": "color",
+      "label": "Color",
+      "default": "36BCF7"
+    },
+    {
+      "key": "size",
+      "type": "number",
+      "label": "Text size",
+      "default": 24,
+      "min": 12,
+      "max": 60,
+      "step": 1
+    },
+    {
+      "key": "weight",
+      "type": "enum",
+      "label": "Weight",
+      "default": "500",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ]
+    },
+    {
+      "key": "center",
+      "type": "boolean",
+      "label": "Centered",
+      "default": true
+    },
+    {
+      "key": "width",
+      "type": "number",
+      "label": "Width",
+      "default": 600,
+      "min": 200,
+      "max": 1000,
+      "step": 10
+    },
+    {
+      "key": "height",
+      "type": "number",
+      "label": "Height",
+      "default": 50,
+      "min": 30,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "key": "duration",
+      "type": "number",
+      "label": "Typing speed (ms)",
+      "default": 3000,
+      "min": 1000,
+      "max": 8000,
+      "step": 250
+    },
+    {
+      "key": "pause",
+      "type": "number",
+      "label": "Pause (ms)",
+      "default": 1000,
+      "min": 0,
+      "max": 5000,
+      "step": 250
+    }
+  ]
+}

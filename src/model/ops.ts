@@ -3,12 +3,16 @@
 
 import {
   MAX_CELLS_PER_ROW,
+  MAX_PERCENT_CELLS,
   type Align,
+  type Block,
   type Cell,
+  type CellWidth,
   type Doc,
   type DropTarget,
+  type ParamValue,
   type Row,
-  type WidthStep
+  type TextBlock
 } from './types';
 import { fitWidths, rowTotal, snapWidth } from './widths';
 
@@ -30,17 +34,21 @@ export function findCell(doc: Doc, cellId: string): { row: Row; rowIndex: number
   return null;
 }
 
-/** Whether `target` can take one more cell. Rows are capped so widths never drop below the smallest step. */
-export function canDrop(doc: Doc, target: DropTarget, movingCellId?: string): boolean {
+/**
+ * Whether `target` can take one more cell of width `incoming`. Rows are capped so
+ * percentage widths never drop below the smallest step.
+ */
+export function canDrop(doc: Doc, target: DropTarget, incoming: CellWidth, movingCellId?: string): boolean {
   if (target.kind === 'new-row') return true;
   const row = doc.rows.find((r) => r.id === target.rowId);
   if (!row) return false;
-  const staysInRow = movingCellId !== undefined && row.cells.some((c) => c.id === movingCellId);
-  return staysInRow || row.cells.length < MAX_CELLS_PER_ROW;
+  if (movingCellId !== undefined && row.cells.some((c) => c.id === movingCellId)) return true;
+  if (row.cells.length >= MAX_CELLS_PER_ROW) return false;
+  return incoming === 'auto' || row.cells.filter((c) => c.width !== 'auto').length < MAX_PERCENT_CELLS;
 }
 
 export function insertCell(doc: Doc, cell: Cell, target: DropTarget): Doc {
-  if (!canDrop(doc, target)) return doc;
+  if (!canDrop(doc, target, cell.width)) return doc;
 
   if (target.kind === 'new-row') {
     const index = Math.max(0, Math.min(target.index, doc.rows.length));
@@ -78,7 +86,7 @@ export function removeCell(doc: Doc, cellId: string): Doc {
 export function moveCell(doc: Doc, cellId: string, target: DropTarget): Doc {
   const found = findCell(doc, cellId);
   if (!found) return doc;
-  if (!canDrop(doc, target, cellId)) return doc;
+  if (!canDrop(doc, target, found.row.cells[found.cellIndex].width, cellId)) return doc;
 
   const { row: origin, rowIndex: originRowIndex, cellIndex: originCellIndex } = found;
   const cell = origin.cells[originCellIndex];
@@ -103,12 +111,20 @@ export function widthLimit(row: Row, cellId: string): number {
   return 100 - rowTotal(row.cells.filter((c) => c.id !== cellId).map((c) => c.width));
 }
 
-/** Resizes a cell to the nearest step that still fits beside its siblings. */
-export function resizeCell(doc: Doc, cellId: string, percent: number): Doc {
+/**
+ * Resizes a cell to the nearest step that still fits beside its siblings, or back to
+ * its natural size with 'auto'.
+ */
+export function resizeCell(doc: Doc, cellId: string, percent: number | 'auto'): Doc {
   const found = findCell(doc, cellId);
   if (!found) return doc;
-  const width: WidthStep = snapWidth(percent, widthLimit(found.row, cellId));
-  if (width === found.row.cells[found.cellIndex].width) return doc;
+  const current = found.row.cells[found.cellIndex].width;
+  if (percent !== 'auto' && current === 'auto') {
+    const percentCells = found.row.cells.filter((c) => c.width !== 'auto').length;
+    if (percentCells >= MAX_PERCENT_CELLS) return doc;
+  }
+  const width: CellWidth = percent === 'auto' ? 'auto' : snapWidth(percent, widthLimit(found.row, cellId));
+  if (width === current) return doc;
   return {
     ...doc,
     rows: doc.rows.map((r) =>
@@ -119,4 +135,49 @@ export function resizeCell(doc: Doc, cellId: string, percent: number): Doc {
 
 export function setRowAlign(doc: Doc, rowId: string, align: Align): Doc {
   return { ...doc, rows: doc.rows.map((r) => (r.id === rowId && r.align !== align ? { ...r, align } : r)) };
+}
+
+/** Replaces a cell's block. `fn` returning the same block leaves the doc untouched. */
+export function updateBlock(doc: Doc, cellId: string, fn: (block: Block) => Block): Doc {
+  const found = findCell(doc, cellId);
+  if (!found) return doc;
+  const cell = found.row.cells[found.cellIndex];
+  const block = fn(cell.block);
+  if (block === cell.block) return doc;
+  return {
+    ...doc,
+    rows: doc.rows.map((r) =>
+      r.id === found.row.id ? { ...r, cells: r.cells.map((c) => (c.id === cellId ? { ...c, block } : c)) } : r
+    )
+  };
+}
+
+export function setParam(doc: Doc, cellId: string, key: string, value: ParamValue): Doc {
+  return updateBlock(doc, cellId, (block) =>
+    block.type !== 'widget' || block.params[key] === value ? block : { ...block, params: { ...block.params, [key]: value } }
+  );
+}
+
+export function setText(doc: Doc, cellId: string, patch: Partial<Pick<TextBlock, 'kind' | 'runs'>>): Doc {
+  return updateBlock(doc, cellId, (block) => {
+    if (block.type !== 'text') return block;
+    const next = { ...block, ...patch };
+    return JSON.stringify(next) === JSON.stringify(block) ? block : next;
+  });
+}
+
+/** Copies a cell right after itself, or into a new row below when its row is full. */
+export function duplicateCell(doc: Doc, cellId: string): { doc: Doc; id: string | null } {
+  const found = findCell(doc, cellId);
+  if (!found) return { doc, id: null };
+  const cell = found.row.cells[found.cellIndex];
+  const copy: Cell = { ...cell, id: newId() };
+  const beside: DropTarget = { kind: 'into-row', rowId: found.row.id, index: found.cellIndex + 1 };
+  const target: DropTarget = canDrop(doc, beside, copy.width) ? beside : { kind: 'new-row', index: found.rowIndex + 1 };
+  return { doc: insertCell(doc, copy, target), id: copy.id };
+}
+
+/** Swaps the whole layout for another (a template), keeping the user's settings. */
+export function replaceRows(doc: Doc, rows: Row[]): Doc {
+  return { ...doc, rows };
 }

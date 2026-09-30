@@ -1,0 +1,98 @@
+{
+  "id": "about-me",
+  "name": "About me",
+  "name_zh": "關於我",
+  "description": "The classic emoji list beside your stats.",
+  "description_zh": "經典的 emoji 清單，旁邊放統計卡。",
+  "rows": [
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": 100,
+          "block": {
+            "type": "widget",
+            "widgetId": "capsule-banner",
+            "params": {
+              "type": "soft",
+              "color": "0:ee9ca7,100:ffdde1",
+              "height": 120,
+              "fontColor": "333333",
+              "fontAlignY": 45
+            }
+          }
+        }
+      ]
+    },
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": 50,
+          "block": {
+            "type": "text",
+            "kind": "p",
+            "runs": [
+              {
+                "text": "🔭 I’m currently working on "
+              },
+              {
+                "text": "something cool",
+                "bold": true
+              },
+              {
+                "text": "\n🌱 I’m learning Rust\n👯 Looking to collaborate on open source\n💬 Ask me about React and TypeScript\n⚡ Fun fact: I drink too much coffee"
+              }
+            ]
+          }
+        },
+        {
+          "width": 50,
+          "block": {
+            "type": "widget",
+            "widgetId": "github-stats",
+            "params": {
+              "hide_border": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": 66,
+          "block": {
+            "type": "widget",
+            "widgetId": "skill-icons",
+            "params": {
+              "icons": "ts,react,nextjs,nodejs,tailwind,postgres,docker,git,figma"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": "auto",
+          "block": {
+            "type": "widget",
+            "widgetId": "profile-views",
+            "params": {}
+          }
+        },
+        {
+          "width": "auto",
+          "block": {
+            "type": "widget",
+            "widgetId": "followers-badge",
+            "params": {}
+          }
+        }
+      ]
+    }
+  ]
+}

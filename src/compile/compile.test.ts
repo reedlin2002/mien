@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { MARKER } from '../config';
 import { emptyDoc } from '../model/doc';
-import type { Align, Doc, WidthStep } from '../model/types';
+import type { Align, Block, CellWidth, Doc } from '../model/types';
 import type { WidgetDef } from '../widgets/types';
 import { fillTemplate, resolveParams, widgetSrc } from '../widgets/urls';
 import { compile } from './compile';
@@ -9,6 +9,7 @@ import { compile } from './compile';
 const card: WidgetDef = {
   id: 'card',
   name: 'Card',
+  category: 'stats',
   author: 'a',
   homepage: 'https://example.com',
   urlTemplate: 'https://img.test/card?user={username}&icons={icons}&theme={theme}',
@@ -25,6 +26,7 @@ const card: WidgetDef = {
 const banner: WidgetDef = {
   id: 'banner',
   name: 'Banner',
+  category: 'header',
   author: 'a',
   homepage: 'https://example.com',
   urlTemplate: 'https://img.test/banner?text={text}',
@@ -33,9 +35,36 @@ const banner: WidgetDef = {
   params: [{ key: 'text', type: 'text', default: 'Hi, {username}' }]
 };
 
-const lookup = (id: string) => [card, banner].find((w) => w.id === id);
+const badge: WidgetDef = {
+  id: 'badge',
+  name: 'Badge',
+  category: 'badges',
+  author: 'a',
+  homepage: 'https://example.com',
+  urlTemplate: 'https://img.test/badge',
+  linkTemplate: '{link}',
+  defaultWidth: 'auto',
+  aspectRatio: 4,
+  params: [{ key: 'link', type: 'url', default: '' }]
+};
 
-function doc(rows: { align?: Align; cells: [string, WidthStep][] }[], patch: Partial<Doc> = {}): Doc {
+const image: WidgetDef = {
+  id: 'image',
+  name: 'Image',
+  category: 'media',
+  author: 'a',
+  homepage: 'https://example.com',
+  urlTemplate: '{src}',
+  defaultWidth: 50,
+  aspectRatio: 1,
+  params: [{ key: 'src', type: 'url', required: true }]
+};
+
+const lookup = (id: string) => [card, banner, badge, image].find((w) => w.id === id);
+
+type CellSpec = [string, CellWidth] | [Block, CellWidth];
+
+function doc(rows: { align?: Align; cells: CellSpec[] }[], patch: Partial<Doc> = {}): Doc {
   return {
     ...emptyDoc(),
     username: 'octo',
@@ -44,10 +73,10 @@ function doc(rows: { align?: Align; cells: [string, WidthStep][] }[], patch: Par
     rows: rows.map((r, i) => ({
       id: `r${i}`,
       align: r.align ?? 'center',
-      cells: r.cells.map(([widgetId, width], j) => ({
+      cells: r.cells.map(([what, width], j) => ({
         id: `r${i}c${j}`,
         width,
-        block: { type: 'widget', widgetId, params: {} }
+        block: typeof what === 'string' ? { type: 'widget', widgetId: what, params: {} } : what
       }))
     }))
   };
@@ -118,5 +147,58 @@ describe('widget urls', () => {
 
   it('picks the theme value for the color mode', () => {
     expect(widgetSrc(card, {}, 'octo', 'dark')).toContain('theme=dark');
+  });
+});
+
+const h1 = (text: string): Block => ({ type: 'text', kind: 'h1', runs: [{ text }] });
+const para: Block = { type: 'text', kind: 'p', runs: [{ text: 'I ' }, { text: 'build', bold: true }, { text: ' things', href: 'https://x.dev' }] };
+
+describe('text', () => {
+  it('turns a lone text cell into an aligned heading', () => {
+    expect(compile(doc([{ cells: [[h1('Hi <there> & you'), 100]] }]), lookup)).toBe('<h1 align="center">Hi &lt;there&gt; &amp; you</h1>\n');
+  });
+
+  it('keeps bold and links, which GitHub renders inside HTML', () => {
+    expect(compile(doc([{ align: 'left', cells: [[para, 50]] }]), lookup)).toBe(
+      '<p align="left">I <b>build</b><a href="https://x.dev"> things</a></p>\n'
+    );
+  });
+
+  it('turns line breaks into <br> so the HTML block never ends early', () => {
+    const lines: Block = { type: 'text', kind: 'p', runs: [{ text: 'one\n\ntwo' }] };
+    expect(compile(doc([{ cells: [[lines, 100]] }]), lookup)).toBe('<p align="center">one<br><br>two</p>\n');
+  });
+
+  it('drops empty text', () => {
+    expect(compile(doc([{ cells: [[h1(''), 100]] }]), lookup)).toBe('\n');
+  });
+});
+
+describe('tables', () => {
+  it('puts text beside a widget in a table, the image filling its cell', () => {
+    expect(compile(doc([{ cells: [[h1('Hi'), 50], ['banner', 50]] }]), lookup)).toBe(
+      '<table align="center"><tr><td width="50%" align="center"><h1>Hi</h1></td>' +
+        '<td width="50%" align="center"><img src="https://img.test/banner?text=Hi%2C%20octo" alt="Banner" width="100%"></td></tr></table>\n'
+    );
+  });
+});
+
+describe('natural-size widgets', () => {
+  it('leaves out the width and spaces badges apart', () => {
+    const linked: Block = { type: 'widget', widgetId: 'badge', params: { link: 'https://x.dev/me' } };
+    expect(compile(doc([{ cells: [[linked, 'auto'], ['badge', 'auto']] }]), lookup)).toBe(
+      '<p align="center"><a href="https://x.dev/me"><img src="https://img.test/badge" alt="Badge"></a> <img src="https://img.test/badge" alt="Badge"></p>\n'
+    );
+  });
+
+  it('skips widgets whose required params are empty', () => {
+    expect(compile(doc([{ cells: [['image', 50]] }]), lookup)).toBe('\n');
+    const set: Block = { type: 'widget', widgetId: 'image', params: { src: 'https://i.test/cat.gif' } };
+    expect(compile(doc([{ cells: [[set, 50]] }]), lookup)).toBe('<p align="center"><img src="https://i.test/cat.gif" alt="Image" width="50%"></p>\n');
+  });
+
+  it('refuses script links', () => {
+    const evil: Block = { type: 'widget', widgetId: 'badge', params: { link: 'javascript:alert(1)' } };
+    expect(compile(doc([{ cells: [[evil, 'auto']] }]), lookup)).not.toContain('javascript');
   });
 });

@@ -1,9 +1,16 @@
 import { useEffect, useState } from 'react';
+import { installMarkdownTheme } from './canvas/markdownTheme';
 import { Workspace } from './canvas/Workspace';
-import { removeCell } from './model/ops';
+import { useT } from './i18n';
+import { duplicateCell, removeCell } from './model/ops';
 import { useEditor } from './store/editor';
+import { usePrefs } from './store/prefs';
+import { TemplateGallery } from './templates/TemplateGallery';
 import { ExportDialog } from './ui/ExportDialog';
+import { Modal } from './ui/Modal';
 import { Toolbar } from './ui/Toolbar';
+
+installMarkdownTheme();
 
 function isTyping(target: EventTarget | null): boolean {
   return target instanceof HTMLElement && (target.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName));
@@ -14,7 +21,7 @@ function useShortcuts(enabled: boolean) {
     if (!enabled) return;
     const onKey = (e: KeyboardEvent) => {
       if (isTyping(e.target)) return;
-      const { undo, redo, edit, select, selectedCellId } = useEditor.getState();
+      const { undo, redo, edit, select, startEditing, selectedCellId, doc } = useEditor.getState();
       const mod = e.ctrlKey || e.metaKey;
       const key = e.key.toLowerCase();
 
@@ -25,9 +32,24 @@ function useShortcuts(enabled: boolean) {
       } else if (mod && key === 'y') {
         e.preventDefault();
         redo();
+      } else if (mod && key === 'd' && selectedCellId) {
+        e.preventDefault();
+        let copy: string | null = null;
+        edit((d) => {
+          const result = duplicateCell(d, selectedCellId);
+          copy = result.id;
+          return result.doc;
+        });
+        if (copy) select(copy);
       } else if ((e.key === 'Delete' || e.key === 'Backspace') && selectedCellId) {
         e.preventDefault();
-        edit((doc) => removeCell(doc, selectedCellId));
+        edit((d) => removeCell(d, selectedCellId));
+      } else if (e.key === 'Enter' && selectedCellId) {
+        const isText = doc.rows.some((r) => r.cells.some((c) => c.id === selectedCellId && c.block.type === 'text'));
+        if (isText) {
+          e.preventDefault();
+          startEditing(selectedCellId);
+        }
       } else if (e.key === 'Escape') {
         select(null);
       }
@@ -38,14 +60,26 @@ function useShortcuts(enabled: boolean) {
 }
 
 export function App() {
-  const [exporting, setExporting] = useState(false);
-  useShortcuts(!exporting);
+  const t = useT();
+  const lang = usePrefs((s) => s.lang);
+  const [dialog, setDialog] = useState<'export' | 'templates' | null>(null);
+  useShortcuts(dialog === null);
+
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
 
   return (
     <div className="flex h-screen flex-col bg-slate-100 text-slate-900">
-      <Toolbar onExport={() => setExporting(true)} />
+      <Toolbar onExport={() => setDialog('export')} onTemplates={() => setDialog('templates')} />
       <Workspace />
-      {exporting && <ExportDialog onClose={() => setExporting(false)} />}
+      {dialog === 'export' && <ExportDialog onClose={() => setDialog(null)} />}
+      {dialog === 'templates' && (
+        <Modal title={t('templatesTitle')} width="max-w-3xl" onClose={() => setDialog(null)}>
+          <p className="-mt-3 mb-4 text-sm text-slate-500">{t('templatesHint')}</p>
+          <TemplateGallery columns={2} onPick={() => setDialog(null)} />
+        </Modal>
+      )}
     </div>
   );
 }

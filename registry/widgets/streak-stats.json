@@ -1,0 +1,75 @@
+{
+  "$schema": "../widget.schema.json",
+  "id": "streak-stats",
+  "name": "Streak",
+  "description": "Your total contributions and longest streak.",
+  "category": "stats",
+  "author": "DenverCoder1",
+  "homepage": "https://github.com/DenverCoder1/github-readme-streak-stats",
+  "urlTemplate": "https://streak-stats.demolab.com?user={username}&theme={theme}&hide_border={hide_border}",
+  "linkTemplate": "https://github.com/{username}",
+  "defaultWidth": 50,
+  "aspectRatio": 2.538,
+  "params": [
+    {
+      "key": "username",
+      "type": "username"
+    },
+    {
+      "key": "theme",
+      "type": "enum",
+      "label": "Theme",
+      "default": "auto",
+      "preview": true,
+      "options": [
+        {
+          "value": "auto",
+          "label": "Auto (light/dark)"
+        },
+        {
+          "value": "transparent",
+          "label": "Transparent"
+        },
+        {
+          "value": "radical",
+          "label": "Radical"
+        },
+        {
+          "value": "gruvbox",
+          "label": "Gruvbox"
+        },
+        {
+          "value": "onedark",
+          "label": "One Dark"
+        },
+        {
+          "value": "synthwave",
+          "label": "Synthwave"
+        },
+        {
+          "value": "nord",
+          "label": "Nord"
+        },
+        {
+          "value": "catppuccin-mocha",
+          "label": "Catppuccin"
+        },
+        {
+          "value": "rose-pine",
+          "label": "Rosé Pine"
+        }
+      ]
+    },
+    {
+      "key": "hide_border",
+      "type": "boolean",
+      "label": "Hide border",
+      "default": false
+    }
+  ],
+  "theme": {
+    "param": "theme",
+    "light": "default",
+    "dark": "github-dark-blue"
+  }
+}

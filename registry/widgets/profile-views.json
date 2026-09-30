@@ -1,0 +1,55 @@
+{
+  "$schema": "../widget.schema.json",
+  "id": "profile-views",
+  "name": "Profile views",
+  "description": "Counts visits to your profile.",
+  "category": "badges",
+  "author": "antonkomarev",
+  "homepage": "https://github.com/antonkomarev/github-profile-views-counter",
+  "urlTemplate": "https://komarev.com/ghpvc/?username={username}&label={label}&color={color}&style={style}",
+  "defaultWidth": "auto",
+  "aspectRatio": 6,
+  "params": [
+    {
+      "key": "username",
+      "type": "username"
+    },
+    {
+      "key": "label",
+      "type": "text",
+      "label": "Label",
+      "default": "Profile views"
+    },
+    {
+      "key": "color",
+      "type": "color",
+      "label": "Color",
+      "default": "0e75b6"
+    },
+    {
+      "key": "style",
+      "type": "enum",
+      "label": "Style",
+      "default": "flat",
+      "preview": true,
+      "options": [
+        {
+          "value": "flat",
+          "label": "Flat"
+        },
+        {
+          "value": "flat-square",
+          "label": "Square"
+        },
+        {
+          "value": "plastic",
+          "label": "Plastic"
+        },
+        {
+          "value": "for-the-badge",
+          "label": "Bold"
+        }
+      ]
+    }
+  ]
+}

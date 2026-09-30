@@ -1,0 +1,125 @@
+{
+  "id": "dashboard",
+  "name": "Dashboard",
+  "name_zh": "數據儀表板",
+  "description": "Every stat card, lined up.",
+  "description_zh": "把所有統計卡排整齊。",
+  "rows": [
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": 100,
+          "block": {
+            "type": "widget",
+            "widgetId": "capsule-banner",
+            "params": {
+              "type": "rect",
+              "color": "0:0f2027,50:203a43,100:2c5364",
+              "height": 110,
+              "text": "{username}",
+              "fontSize": 50,
+              "fontAlignY": 50,
+              "animation": "twinkling"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": 50,
+          "block": {
+            "type": "widget",
+            "widgetId": "github-stats",
+            "params": {
+              "hide_border": true
+            }
+          }
+        },
+        {
+          "width": 50,
+          "block": {
+            "type": "widget",
+            "widgetId": "streak-stats",
+            "params": {
+              "hide_border": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": 100,
+          "block": {
+            "type": "widget",
+            "widgetId": "profile-summary",
+            "params": {}
+          }
+        }
+      ]
+    },
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": 33,
+          "block": {
+            "type": "widget",
+            "widgetId": "top-langs",
+            "params": {
+              "layout": "donut",
+              "hide_border": true
+            }
+          }
+        },
+        {
+          "width": 33,
+          "block": {
+            "type": "widget",
+            "widgetId": "top-langs",
+            "params": {
+              "layout": "pie",
+              "hide_border": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": 100,
+          "block": {
+            "type": "widget",
+            "widgetId": "contribution-chart",
+            "params": {
+              "color": "2f81f7"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": "auto",
+          "block": {
+            "type": "widget",
+            "widgetId": "profile-views",
+            "params": {
+              "style": "for-the-badge"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

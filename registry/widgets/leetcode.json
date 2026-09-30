@@ -1,0 +1,85 @@
+{
+  "$schema": "../widget.schema.json",
+  "id": "leetcode",
+  "name": "LeetCode",
+  "description": "Solved problems by difficulty.",
+  "category": "stats",
+  "author": "JacobLinCool",
+  "homepage": "https://github.com/JacobLinCool/LeetCode-Stats-Card",
+  "urlTemplate": "https://leetcard.jacoblin.cool/{handle}?theme={theme}&ext={ext}",
+  "linkTemplate": "https://leetcode.com/u/{handle}",
+  "defaultWidth": 50,
+  "aspectRatio": 2.5,
+  "params": [
+    {
+      "key": "handle",
+      "type": "text",
+      "label": "LeetCode username",
+      "required": true,
+      "default": "",
+      "placeholder": "your-leetcode-name"
+    },
+    {
+      "key": "theme",
+      "type": "enum",
+      "label": "Theme",
+      "default": "auto",
+      "preview": true,
+      "options": [
+        {
+          "value": "auto",
+          "label": "Auto (light/dark)"
+        },
+        {
+          "value": "nord",
+          "label": "Nord"
+        },
+        {
+          "value": "forest",
+          "label": "Forest"
+        },
+        {
+          "value": "wtf",
+          "label": "WTF"
+        },
+        {
+          "value": "unicorn",
+          "label": "Unicorn"
+        },
+        {
+          "value": "transparent",
+          "label": "Transparent"
+        }
+      ]
+    },
+    {
+      "key": "ext",
+      "type": "enum",
+      "label": "Extra",
+      "default": "",
+      "options": [
+        {
+          "value": "",
+          "label": "None"
+        },
+        {
+          "value": "activity",
+          "label": "Recent activity"
+        },
+        {
+          "value": "contest",
+          "label": "Contest rating"
+        },
+        {
+          "value": "heatmap",
+          "label": "Heatmap"
+        }
+      ]
+    }
+  ],
+  "theme": {
+    "param": "theme",
+    "light": "light",
+    "dark": "dark"
+  }
+}

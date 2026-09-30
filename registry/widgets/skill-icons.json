@@ -1,0 +1,335 @@
+{
+  "$schema": "../widget.schema.json",
+  "id": "skill-icons",
+  "name": "Skill icons",
+  "description": "The tools and languages you use, as a row of icons.",
+  "category": "skills",
+  "author": "tandpfun",
+  "homepage": "https://github.com/tandpfun/skill-icons",
+  "urlTemplate": "https://skillicons.dev/icons?i={icons}&perline={perline}&theme={theme}",
+  "defaultWidth": 50,
+  "aspectRatio": 8.3,
+  "params": [
+    {
+      "key": "icons",
+      "type": "multi",
+      "label": "Icons",
+      "separator": ",",
+      "default": "js,ts,react,nodejs,py,docker,git,vscode",
+      "thumbnailTemplate": "https://skillicons.dev/icons?i={value}",
+      "options": [
+        {
+          "value": "js"
+        },
+        {
+          "value": "ts"
+        },
+        {
+          "value": "py"
+        },
+        {
+          "value": "java"
+        },
+        {
+          "value": "c"
+        },
+        {
+          "value": "cpp"
+        },
+        {
+          "value": "cs"
+        },
+        {
+          "value": "go"
+        },
+        {
+          "value": "rust"
+        },
+        {
+          "value": "kotlin"
+        },
+        {
+          "value": "swift"
+        },
+        {
+          "value": "dart"
+        },
+        {
+          "value": "php"
+        },
+        {
+          "value": "ruby"
+        },
+        {
+          "value": "lua"
+        },
+        {
+          "value": "r"
+        },
+        {
+          "value": "html"
+        },
+        {
+          "value": "css"
+        },
+        {
+          "value": "sass"
+        },
+        {
+          "value": "tailwind"
+        },
+        {
+          "value": "bootstrap"
+        },
+        {
+          "value": "react"
+        },
+        {
+          "value": "nextjs"
+        },
+        {
+          "value": "vue"
+        },
+        {
+          "value": "nuxtjs"
+        },
+        {
+          "value": "angular"
+        },
+        {
+          "value": "svelte"
+        },
+        {
+          "value": "astro"
+        },
+        {
+          "value": "vite"
+        },
+        {
+          "value": "nodejs"
+        },
+        {
+          "value": "deno"
+        },
+        {
+          "value": "bun"
+        },
+        {
+          "value": "express"
+        },
+        {
+          "value": "nestjs"
+        },
+        {
+          "value": "django"
+        },
+        {
+          "value": "flask"
+        },
+        {
+          "value": "fastapi"
+        },
+        {
+          "value": "spring"
+        },
+        {
+          "value": "dotnet"
+        },
+        {
+          "value": "laravel"
+        },
+        {
+          "value": "rails"
+        },
+        {
+          "value": "flutter"
+        },
+        {
+          "value": "androidstudio"
+        },
+        {
+          "value": "electron"
+        },
+        {
+          "value": "tauri"
+        },
+        {
+          "value": "threejs"
+        },
+        {
+          "value": "redux"
+        },
+        {
+          "value": "graphql"
+        },
+        {
+          "value": "prisma"
+        },
+        {
+          "value": "mongodb"
+        },
+        {
+          "value": "mysql"
+        },
+        {
+          "value": "postgres"
+        },
+        {
+          "value": "redis"
+        },
+        {
+          "value": "sqlite"
+        },
+        {
+          "value": "supabase"
+        },
+        {
+          "value": "firebase"
+        },
+        {
+          "value": "docker"
+        },
+        {
+          "value": "kubernetes"
+        },
+        {
+          "value": "aws"
+        },
+        {
+          "value": "gcp"
+        },
+        {
+          "value": "azure"
+        },
+        {
+          "value": "vercel"
+        },
+        {
+          "value": "cloudflare"
+        },
+        {
+          "value": "nginx"
+        },
+        {
+          "value": "terraform"
+        },
+        {
+          "value": "githubactions"
+        },
+        {
+          "value": "git"
+        },
+        {
+          "value": "github"
+        },
+        {
+          "value": "gitlab"
+        },
+        {
+          "value": "linux"
+        },
+        {
+          "value": "ubuntu"
+        },
+        {
+          "value": "bash"
+        },
+        {
+          "value": "powershell"
+        },
+        {
+          "value": "vscode"
+        },
+        {
+          "value": "vim"
+        },
+        {
+          "value": "idea"
+        },
+        {
+          "value": "figma"
+        },
+        {
+          "value": "blender"
+        },
+        {
+          "value": "unity"
+        },
+        {
+          "value": "godot"
+        },
+        {
+          "value": "pytorch"
+        },
+        {
+          "value": "tensorflow"
+        },
+        {
+          "value": "sklearn"
+        },
+        {
+          "value": "opencv"
+        },
+        {
+          "value": "anaconda"
+        },
+        {
+          "value": "arduino"
+        },
+        {
+          "value": "raspberrypi"
+        },
+        {
+          "value": "jest"
+        },
+        {
+          "value": "postman"
+        },
+        {
+          "value": "notion"
+        },
+        {
+          "value": "md"
+        },
+        {
+          "value": "latex"
+        }
+      ]
+    },
+    {
+      "key": "perline",
+      "type": "number",
+      "label": "Icons per line",
+      "default": 12,
+      "min": 3,
+      "max": 20,
+      "step": 1
+    },
+    {
+      "key": "theme",
+      "type": "enum",
+      "label": "Theme",
+      "default": "auto",
+      "preview": true,
+      "options": [
+        {
+          "value": "auto",
+          "label": "Auto (light/dark)"
+        },
+        {
+          "value": "light",
+          "label": "Light"
+        },
+        {
+          "value": "dark",
+          "label": "Dark"
+        }
+      ]
+    }
+  ],
+  "theme": {
+    "param": "theme",
+    "light": "light",
+    "dark": "dark"
+  }
+}

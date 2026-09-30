@@ -4,7 +4,7 @@
 // skipped otherwise.
 
 import { describe, expect, it } from 'vitest';
-import { emptyDoc, widgetCell } from '../model/doc';
+import { emptyDoc, textCell, widgetCell } from '../model/doc';
 import type { Align, Doc, WidthStep } from '../model/types';
 import { compile } from './compile';
 
@@ -61,5 +61,45 @@ describe.skipIf(!token)('GitHub keeps what the layout needs', () => {
   it('hides the marker from the rendered page', async () => {
     const html = await render(compile(sample));
     expect(html).not.toContain('made with');
+  });
+
+  it('keeps aligned headings, bold, links and line breaks', async () => {
+    const text: Doc = {
+      ...emptyDoc(),
+      username: 'octocat',
+      marker: false,
+      rows: [
+        { id: 'a', align: 'center', cells: [textCell('h1', [{ text: 'Hi ' }, { text: 'there', bold: true }])] },
+        { id: 'b', align: 'left', cells: [textCell('p', [{ text: 'one\ntwo ' }, { text: 'site', href: 'https://example.com' }])] }
+      ]
+    };
+    const html = await render(compile(text));
+    expect(html).toContain('<h1 align="center">Hi <b>there</b></h1>');
+    expect(html).toMatch(/<p align="left">one<br>two <a href="https:\/\/example\.com"[^>]*>site<\/a><\/p>/);
+  });
+
+  it('keeps table alignment and cell widths when text sits beside a widget', async () => {
+    const mixed: Doc = {
+      ...emptyDoc(),
+      username: 'octocat',
+      marker: false,
+      rows: [{ id: 't', align: 'center', cells: [{ ...textCell('p', [{ text: 'About me' }]), width: 50 }, widgetCell('github-stats', 50)] }]
+    };
+    const html = await render(compile(mixed));
+    expect(html).toMatch(/<table align="center"/);
+    expect(count(html, /<td width="50%" align="center">/)).toBe(2);
+    expect(html).toMatch(/<img [^>]*width="100%"/);
+  });
+
+  it('leaves natural-size badges without a width and keeps the space between them', async () => {
+    const badges: Doc = {
+      ...emptyDoc(),
+      username: 'octocat',
+      marker: false,
+      rows: [{ id: 'b', align: 'center', cells: [widgetCell('profile-views', 'auto'), widgetCell('followers-badge', 'auto')] }]
+    };
+    const html = await render(compile(badges));
+    expect(html).not.toMatch(/width="/);
+    expect(html).toMatch(/<\/a> <a/);
   });
 });

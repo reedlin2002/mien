@@ -11,6 +11,8 @@ export interface EditorState {
   past: Doc[];
   future: Doc[];
   selectedCellId: string | null;
+  /** The text cell whose words are being typed into, if any. */
+  editingCellId: string | null;
   /** Applies a pure edit as one undo step. Edits that return the same doc are ignored. */
   edit: (fn: (doc: Doc) => Doc) => void;
   /** Settings outside the layout (username, marker) change without an undo step. */
@@ -18,6 +20,8 @@ export interface EditorState {
   undo: () => void;
   redo: () => void;
   select: (cellId: string | null) => void;
+  startEditing: (cellId: string) => void;
+  stopEditing: () => void;
 }
 
 function keepSelection(doc: Doc, selected: string | null): string | null {
@@ -35,6 +39,7 @@ export function createEditorState(initial: Doc) {
     past: [],
     future: [],
     selectedCellId: null,
+    editingCellId: null,
     edit: (fn) =>
       set((s) => {
         const next = fn(s.doc);
@@ -43,7 +48,8 @@ export function createEditorState(initial: Doc) {
           doc: next,
           past: [...s.past, s.doc].slice(-HISTORY_LIMIT),
           future: [],
-          selectedCellId: keepSelection(next, s.selectedCellId)
+          selectedCellId: keepSelection(next, s.selectedCellId),
+          editingCellId: keepSelection(next, s.editingCellId)
         };
       }),
     setSetting: (patch) => set((s) => ({ doc: { ...s.doc, ...patch } })),
@@ -71,7 +77,10 @@ export function createEditorState(initial: Doc) {
           selectedCellId: keepSelection(doc, s.selectedCellId)
         };
       }),
-    select: (cellId) => set({ selectedCellId: cellId })
+    select: (cellId) =>
+      set((s) => ({ selectedCellId: cellId, editingCellId: s.editingCellId === cellId ? s.editingCellId : null })),
+    startEditing: (cellId) => set({ selectedCellId: cellId, editingCellId: cellId }),
+    stopEditing: () => set({ editingCellId: null })
   }));
 }
 

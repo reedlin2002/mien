@@ -1,0 +1,213 @@
+{
+  "$schema": "../widget.schema.json",
+  "id": "social-badge",
+  "name": "Social link",
+  "description": "A badge that links to one of your accounts.",
+  "category": "badges",
+  "author": "shields.io",
+  "homepage": "https://shields.io",
+  "urlTemplate": "https://img.shields.io/static/v1?label=&message={message}&color={color}&style={style}&logo={logo}&logoColor=white",
+  "linkTemplate": "{link}",
+  "defaultWidth": "auto",
+  "aspectRatio": 3.25,
+  "params": [
+    {
+      "key": "platform",
+      "type": "enum",
+      "label": "Platform",
+      "default": "linkedin",
+      "preview": true,
+      "options": [
+        {
+          "value": "linkedin",
+          "label": "LinkedIn",
+          "set": {
+            "message": "LinkedIn",
+            "color": "0A66C2",
+            "logo": "linkedin"
+          }
+        },
+        {
+          "value": "x",
+          "label": "X",
+          "set": {
+            "message": "X",
+            "color": "000000",
+            "logo": "x"
+          }
+        },
+        {
+          "value": "instagram",
+          "label": "Instagram",
+          "set": {
+            "message": "Instagram",
+            "color": "E4405F",
+            "logo": "instagram"
+          }
+        },
+        {
+          "value": "threads",
+          "label": "Threads",
+          "set": {
+            "message": "Threads",
+            "color": "000000",
+            "logo": "threads"
+          }
+        },
+        {
+          "value": "bluesky",
+          "label": "Bluesky",
+          "set": {
+            "message": "Bluesky",
+            "color": "0285FF",
+            "logo": "bluesky"
+          }
+        },
+        {
+          "value": "youtube",
+          "label": "YouTube",
+          "set": {
+            "message": "YouTube",
+            "color": "FF0000",
+            "logo": "youtube"
+          }
+        },
+        {
+          "value": "email",
+          "label": "Email",
+          "set": {
+            "message": "Email",
+            "color": "D14836",
+            "logo": "gmail"
+          }
+        },
+        {
+          "value": "website",
+          "label": "Website",
+          "set": {
+            "message": "Website",
+            "color": "4285F4",
+            "logo": "googlechrome"
+          }
+        },
+        {
+          "value": "facebook",
+          "label": "Facebook",
+          "set": {
+            "message": "Facebook",
+            "color": "0866FF",
+            "logo": "facebook"
+          }
+        },
+        {
+          "value": "discord",
+          "label": "Discord",
+          "set": {
+            "message": "Discord",
+            "color": "5865F2",
+            "logo": "discord"
+          }
+        },
+        {
+          "value": "medium",
+          "label": "Medium",
+          "set": {
+            "message": "Medium",
+            "color": "000000",
+            "logo": "medium"
+          }
+        },
+        {
+          "value": "devto",
+          "label": "dev.to",
+          "set": {
+            "message": "dev.to",
+            "color": "0A0A0A",
+            "logo": "devdotto"
+          }
+        },
+        {
+          "value": "stackoverflow",
+          "label": "Stack Overflow",
+          "set": {
+            "message": "Stack Overflow",
+            "color": "F58025",
+            "logo": "stackoverflow"
+          }
+        },
+        {
+          "value": "kaggle",
+          "label": "Kaggle",
+          "set": {
+            "message": "Kaggle",
+            "color": "20BEFF",
+            "logo": "kaggle"
+          }
+        },
+        {
+          "value": "twitch",
+          "label": "Twitch",
+          "set": {
+            "message": "Twitch",
+            "color": "9146FF",
+            "logo": "twitch"
+          }
+        },
+        {
+          "value": "leetcode",
+          "label": "LeetCode",
+          "set": {
+            "message": "LeetCode",
+            "color": "FFA116",
+            "logo": "leetcode"
+          }
+        },
+        {
+          "value": "kofi",
+          "label": "Ko-fi",
+          "set": {
+            "message": "Ko-fi",
+            "color": "FF5E5B",
+            "logo": "kofi"
+          }
+        }
+      ]
+    },
+    {
+      "key": "link",
+      "type": "url",
+      "label": "Link",
+      "default": "",
+      "placeholder": "https://linkedin.com/in/you"
+    },
+    {
+      "key": "style",
+      "type": "enum",
+      "label": "Style",
+      "default": "for-the-badge",
+      "preview": true,
+      "options": [
+        {
+          "value": "for-the-badge",
+          "label": "Bold"
+        },
+        {
+          "value": "flat",
+          "label": "Flat"
+        },
+        {
+          "value": "flat-square",
+          "label": "Square"
+        },
+        {
+          "value": "plastic",
+          "label": "Plastic"
+        },
+        {
+          "value": "social",
+          "label": "Social"
+        }
+      ]
+    }
+  ]
+}

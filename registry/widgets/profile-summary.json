@@ -1,0 +1,65 @@
+{
+  "$schema": "../widget.schema.json",
+  "id": "profile-summary",
+  "name": "Contribution summary",
+  "description": "A contribution timeline with your profile details.",
+  "category": "stats",
+  "author": "vn7n24fzkq",
+  "homepage": "https://github.com/vn7n24fzkq/github-profile-summary-cards",
+  "urlTemplate": "https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username={username}&theme={theme}",
+  "linkTemplate": "https://github.com/{username}",
+  "defaultWidth": 100,
+  "aspectRatio": 3.5,
+  "params": [
+    {
+      "key": "username",
+      "type": "username"
+    },
+    {
+      "key": "theme",
+      "type": "enum",
+      "label": "Theme",
+      "default": "auto",
+      "preview": true,
+      "options": [
+        {
+          "value": "auto",
+          "label": "Auto (light/dark)"
+        },
+        {
+          "value": "radical",
+          "label": "Radical"
+        },
+        {
+          "value": "tokyonight",
+          "label": "Tokyo Night"
+        },
+        {
+          "value": "dracula",
+          "label": "Dracula"
+        },
+        {
+          "value": "gruvbox",
+          "label": "Gruvbox"
+        },
+        {
+          "value": "nord_dark",
+          "label": "Nord"
+        },
+        {
+          "value": "solarized",
+          "label": "Solarized"
+        },
+        {
+          "value": "2077",
+          "label": "2077"
+        }
+      ]
+    }
+  ],
+  "theme": {
+    "param": "theme",
+    "light": "default",
+    "dark": "github_dark"
+  }
+}

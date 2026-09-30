@@ -1,0 +1,93 @@
+{
+  "id": "minimal",
+  "name": "Minimal",
+  "name_zh": "極簡",
+  "description": "A heading, a sentence and your links.",
+  "description_zh": "一個標題、一句話和你的連結。",
+  "rows": [
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": 100,
+          "block": {
+            "type": "text",
+            "kind": "h1",
+            "runs": [
+              {
+                "text": "Hi there 👋"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": 100,
+          "block": {
+            "type": "text",
+            "kind": "p",
+            "runs": [
+              {
+                "text": "I build things for the web. Currently exploring design tools and open source."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": 33,
+          "block": {
+            "type": "widget",
+            "widgetId": "skill-icons",
+            "params": {
+              "icons": "ts,react,nodejs,py,docker"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": "auto",
+          "block": {
+            "type": "widget",
+            "widgetId": "social-badge",
+            "params": {
+              "platform": "website",
+              "style": "flat"
+            }
+          }
+        },
+        {
+          "width": "auto",
+          "block": {
+            "type": "widget",
+            "widgetId": "social-badge",
+            "params": {
+              "platform": "email",
+              "style": "flat"
+            }
+          }
+        },
+        {
+          "width": "auto",
+          "block": {
+            "type": "widget",
+            "widgetId": "profile-views",
+            "params": {}
+          }
+        }
+      ]
+    }
+  ]
+}

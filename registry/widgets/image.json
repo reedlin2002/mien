@@ -1,0 +1,30 @@
+{
+  "$schema": "../widget.schema.json",
+  "id": "image",
+  "name": "Image / GIF",
+  "description": "Any picture or animated GIF from a link.",
+  "category": "media",
+  "author": "you",
+  "homepage": "https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#images",
+  "urlTemplate": "{src}",
+  "linkTemplate": "{link}",
+  "defaultWidth": 50,
+  "aspectRatio": 1.778,
+  "params": [
+    {
+      "key": "src",
+      "type": "url",
+      "label": "Image link",
+      "required": true,
+      "default": "",
+      "placeholder": "https://…/cat.gif"
+    },
+    {
+      "key": "link",
+      "type": "url",
+      "label": "Opens when clicked",
+      "default": "",
+      "placeholder": "https://…"
+    }
+  ]
+}

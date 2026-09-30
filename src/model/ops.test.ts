@@ -1,11 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { emptyDoc, widgetCell } from './doc';
-import { canDrop, insertCell, moveCell, removeCell, resizeCell, setRowAlign, widthLimit } from './ops';
-import type { Doc, WidthStep } from './types';
+import { emptyDoc, textCell, widgetCell } from './doc';
+import { canDrop, duplicateCell, insertCell, moveCell, removeCell, resizeCell, setParam, setRowAlign, setText, widthLimit } from './ops';
+import type { CellWidth, Doc } from './types';
 import { fitWidths, snapWidth, stepAtMost } from './widths';
 
 /** Builds a doc from width lists, one list per row. Cell ids are r{row}c{cell}. */
-function docOf(...rows: WidthStep[][]): Doc {
+function docOf(...rows: CellWidth[][]): Doc {
   return {
     ...emptyDoc(),
     rows: rows.map((widths, r) => ({
@@ -56,7 +56,7 @@ describe('insertCell', () => {
   it('refuses a sixth cell', () => {
     const before = docOf([20, 20, 20, 20, 20]);
     const target = { kind: 'into-row', rowId: 'r0', index: 5 } as const;
-    expect(canDrop(before, target)).toBe(false);
+    expect(canDrop(before, target, 20)).toBe(false);
     expect(insertCell(before, widgetCell('w', 20), target)).toBe(before);
   });
 
@@ -131,5 +131,56 @@ describe('setRowAlign', () => {
   it('changes only the given row', () => {
     const doc = setRowAlign(docOf([50], [50]), 'r1', 'left');
     expect(doc.rows.map((r) => r.align)).toEqual(['center', 'left']);
+  });
+});
+
+describe('natural-size cells', () => {
+  it('lets badges share a row with percentage cells without being evened out', () => {
+    const doc = insertCell(docOf([50, 50]), { ...widgetCell('w', 'auto'), id: 'badge' }, { kind: 'into-row', rowId: 'r0', index: 2 });
+    expect(widths(doc)).toEqual([[50, 50, 'auto']]);
+  });
+
+  it('allows more badges than percentage cells in a row', () => {
+    const doc = docOf([20, 20, 20, 20, 20]);
+    expect(canDrop(doc, { kind: 'into-row', rowId: 'r0', index: 0 }, 'auto')).toBe(true);
+    expect(canDrop(doc, { kind: 'into-row', rowId: 'r0', index: 0 }, 25)).toBe(false);
+    const ten = docOf(Array(10).fill('auto'));
+    expect(canDrop(ten, { kind: 'into-row', rowId: 'r0', index: 0 }, 'auto')).toBe(false);
+  });
+
+  it('switches between natural size and a step', () => {
+    const sized = resizeCell(docOf(['auto', 50]), 'r0c0', 45);
+    expect(widths(sized)).toEqual([[50, 50]]);
+    expect(widths(resizeCell(sized, 'r0c0', 'auto'))).toEqual([['auto', 50]]);
+  });
+
+  it('will not turn a badge into a sixth percentage cell', () => {
+    const doc = docOf([20, 20, 20, 20, 20, 'auto']);
+    expect(resizeCell(doc, 'r0c5', 20)).toBe(doc);
+  });
+});
+
+describe('block edits', () => {
+  it('sets a widget param and ignores no-op changes', () => {
+    const doc = setParam(docOf([50]), 'r0c0', 'theme', 'dracula');
+    expect(doc.rows[0].cells[0].block).toMatchObject({ params: { theme: 'dracula' } });
+    expect(setParam(doc, 'r0c0', 'theme', 'dracula')).toBe(doc);
+  });
+
+  it('edits text and ignores widgets', () => {
+    const doc: Doc = { ...emptyDoc(), rows: [{ id: 'r', align: 'center', cells: [textCell('h1', [{ text: 'Hi' }])] }] };
+    const id = doc.rows[0].cells[0].id;
+    const next = setText(doc, id, { kind: 'h2' });
+    expect(next.rows[0].cells[0].block).toMatchObject({ kind: 'h2', runs: [{ text: 'Hi' }] });
+    expect(setText(next, id, { kind: 'h2' })).toBe(next);
+    const widgets = docOf([50]);
+    expect(setText(widgets, 'r0c0', { kind: 'p' })).toBe(widgets);
+  });
+
+  it('duplicates beside the original, or below when the row is full', () => {
+    const beside = duplicateCell(docOf([50]), 'r0c0');
+    expect(beside.doc.rows[0].cells.map((c) => c.id)).toEqual(['r0c0', beside.id]);
+    const below = duplicateCell(docOf([20, 20, 20, 20, 20]), 'r0c2');
+    expect(below.doc.rows[1].cells.map((c) => c.id)).toEqual([below.id]);
   });
 });

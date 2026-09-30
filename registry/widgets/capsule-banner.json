@@ -1,36 +1,200 @@
 {
+  "$schema": "../widget.schema.json",
   "id": "capsule-banner",
   "name": "Banner",
+  "description": "A wavy header or footer with your name on it.",
+  "category": "header",
   "author": "kyechan99",
   "homepage": "https://github.com/kyechan99/capsule-render",
-  "urlTemplate": "https://capsule-render.vercel.app/api?type={type}&color={color}&height={height}&section=header&text={text}&fontSize={fontSize}",
+  "urlTemplate": "https://capsule-render.vercel.app/api?type={type}&color={color}&height={height}&section={section}&text={text}&fontSize={fontSize}&fontColor={fontColor}&fontAlignY={fontAlignY}&desc={desc}&descSize={descSize}&descAlignY={descAlignY}&animation={animation}",
   "defaultWidth": 100,
-  "aspectRatio": 7.117,
+  "aspectRatio": 5.69,
   "params": [
+    {
+      "key": "text",
+      "type": "text",
+      "label": "Title",
+      "default": "Hi, I'm {username}"
+    },
+    {
+      "key": "desc",
+      "type": "text",
+      "label": "Subtitle",
+      "default": "",
+      "placeholder": "Developer · Coffee · Open source"
+    },
     {
       "key": "type",
       "type": "enum",
       "label": "Shape",
       "default": "waving",
+      "preview": true,
       "options": [
-        { "value": "waving" },
-        { "value": "rect" },
-        { "value": "soft" },
-        { "value": "slice" },
-        { "value": "egg" },
-        { "value": "shark" },
-        { "value": "cylinder" }
+        {
+          "value": "waving"
+        },
+        {
+          "value": "rect"
+        },
+        {
+          "value": "soft"
+        },
+        {
+          "value": "slice"
+        },
+        {
+          "value": "egg"
+        },
+        {
+          "value": "shark"
+        },
+        {
+          "value": "cylinder"
+        },
+        {
+          "value": "venom"
+        }
       ]
     },
     {
       "key": "color",
       "type": "enum",
-      "label": "Color",
+      "label": "Colors",
       "default": "gradient",
-      "options": [{ "value": "gradient" }, { "value": "auto" }, { "value": "timeGradient" }]
+      "preview": true,
+      "options": [
+        {
+          "value": "gradient",
+          "label": "Rainbow"
+        },
+        {
+          "value": "auto",
+          "label": "Random"
+        },
+        {
+          "value": "timeGradient",
+          "label": "Time of day"
+        },
+        {
+          "value": "0:00c6ff,100:0072ff",
+          "label": "Ocean"
+        },
+        {
+          "value": "0:f7971e,100:ffd200",
+          "label": "Sunset"
+        },
+        {
+          "value": "0:11998e,100:38ef7d",
+          "label": "Mint"
+        },
+        {
+          "value": "0:8e2de2,100:4a00e0",
+          "label": "Purple"
+        },
+        {
+          "value": "0:ee9ca7,100:ffdde1",
+          "label": "Pink"
+        },
+        {
+          "value": "0:0f2027,50:203a43,100:2c5364",
+          "label": "Night"
+        }
+      ]
     },
-    { "key": "text", "type": "text", "label": "Text", "default": "{username}" },
-    { "key": "height", "type": "number", "label": "Height", "default": 120 },
-    { "key": "fontSize", "type": "number", "label": "Font size", "default": 50 }
+    {
+      "key": "section",
+      "type": "enum",
+      "label": "Position",
+      "default": "header",
+      "options": [
+        {
+          "value": "header",
+          "label": "Top"
+        },
+        {
+          "value": "footer",
+          "label": "Bottom"
+        }
+      ]
+    },
+    {
+      "key": "animation",
+      "type": "enum",
+      "label": "Animation",
+      "default": "fadeIn",
+      "options": [
+        {
+          "value": "",
+          "label": "None"
+        },
+        {
+          "value": "fadeIn",
+          "label": "Fade in"
+        },
+        {
+          "value": "scaleIn",
+          "label": "Scale in"
+        },
+        {
+          "value": "twinkling",
+          "label": "Twinkle"
+        },
+        {
+          "value": "blink",
+          "label": "Blink"
+        }
+      ]
+    },
+    {
+      "key": "fontColor",
+      "type": "color",
+      "label": "Text color",
+      "default": "ffffff"
+    },
+    {
+      "key": "height",
+      "type": "number",
+      "label": "Height",
+      "default": 150,
+      "min": 60,
+      "max": 300,
+      "step": 10
+    },
+    {
+      "key": "fontSize",
+      "type": "number",
+      "label": "Title size",
+      "default": 55,
+      "min": 20,
+      "max": 90,
+      "step": 1
+    },
+    {
+      "key": "fontAlignY",
+      "type": "number",
+      "label": "Title position",
+      "default": 35,
+      "min": 10,
+      "max": 90,
+      "step": 1
+    },
+    {
+      "key": "descSize",
+      "type": "number",
+      "label": "Subtitle size",
+      "default": 20,
+      "min": 10,
+      "max": 40,
+      "step": 1
+    },
+    {
+      "key": "descAlignY",
+      "type": "number",
+      "label": "Subtitle position",
+      "default": 58,
+      "min": 10,
+      "max": 90,
+      "step": 1
+    }
   ]
 }

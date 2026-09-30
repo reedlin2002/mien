@@ -5,9 +5,13 @@
 
 export const WIDTH_STEPS = [20, 25, 33, 50, 66, 75, 100] as const;
 export type WidthStep = (typeof WIDTH_STEPS)[number];
+/** 'auto' keeps the image at its natural size, which is how badges are meant to look. */
+export type CellWidth = WidthStep | 'auto';
 
 // Five 20% cells fill a row; a sixth would force widths below the smallest step.
-export const MAX_CELLS_PER_ROW = 5;
+export const MAX_PERCENT_CELLS = 5;
+// Natural-size cells (badges) take little room, so a row may hold more of them.
+export const MAX_CELLS_PER_ROW = 10;
 
 export type Align = 'left' | 'center' | 'right';
 export type ColorMode = 'light' | 'dark';
@@ -20,11 +24,27 @@ export interface WidgetBlock {
   params: Record<string, ParamValue>;
 }
 
-export type Block = WidgetBlock;
+/** Only formatting GitHub keeps inside HTML: bold and links. `\n` is a line break. */
+export interface TextRun {
+  text: string;
+  bold?: boolean;
+  href?: string;
+}
+
+export const TEXT_KINDS = ['h1', 'h2', 'h3', 'p'] as const;
+export type TextKind = (typeof TEXT_KINDS)[number];
+
+export interface TextBlock {
+  type: 'text';
+  kind: TextKind;
+  runs: TextRun[];
+}
+
+export type Block = WidgetBlock | TextBlock;
 
 export interface Cell {
   id: string;
-  width: WidthStep;
+  width: CellWidth;
   block: Block;
 }
 

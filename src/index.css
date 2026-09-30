@@ -1,6 +1,3 @@
-/* GitHub's markdown styles sit in their own layer: above Tailwind's reset, so the page
-   looks like GitHub, and below utilities, so editor chrome can still override them. */
-@layer theme, base, markdown, components, utilities;
-
+/* GitHub's markdown styles are injected at runtime into their own layer; see
+   src/canvas/markdownTheme.ts. */
 @import 'tailwindcss';
-@import 'github-markdown-css/github-markdown-light.css' layer(markdown);

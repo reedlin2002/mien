@@ -1,0 +1,25 @@
+{
+  "$schema": "../widget.schema.json",
+  "id": "contribution-chart",
+  "name": "Contribution chart",
+  "description": "Your green squares, in any color.",
+  "category": "stats",
+  "author": "2016rshah",
+  "homepage": "https://github.com/2016rshah/githubchart-api",
+  "urlTemplate": "https://ghchart.rshah.org/{color}/{username}",
+  "linkTemplate": "https://github.com/{username}",
+  "defaultWidth": 100,
+  "aspectRatio": 6.375,
+  "params": [
+    {
+      "key": "username",
+      "type": "username"
+    },
+    {
+      "key": "color",
+      "type": "color",
+      "label": "Color",
+      "default": "40c463"
+    }
+  ]
+}

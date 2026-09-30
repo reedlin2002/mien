@@ -1,0 +1,160 @@
+{
+  "id": "starter",
+  "name": "Starter",
+  "name_zh": "入門",
+  "description": "Banner, intro, skills and stats.",
+  "description_zh": "橫幅、自我介紹、技能和統計。",
+  "rows": [
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": 100,
+          "block": {
+            "type": "widget",
+            "widgetId": "capsule-banner",
+            "params": {}
+          }
+        }
+      ]
+    },
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": 75,
+          "block": {
+            "type": "widget",
+            "widgetId": "typing-svg",
+            "params": {}
+          }
+        }
+      ]
+    },
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": 100,
+          "block": {
+            "type": "text",
+            "kind": "h2",
+            "runs": [
+              {
+                "text": "About me"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": 100,
+          "block": {
+            "type": "text",
+            "kind": "p",
+            "runs": [
+              {
+                "text": "I'm a developer who loves building things. Always learning something new."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": 50,
+          "block": {
+            "type": "widget",
+            "widgetId": "skill-icons",
+            "params": {}
+          }
+        }
+      ]
+    },
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": 50,
+          "block": {
+            "type": "widget",
+            "widgetId": "github-stats",
+            "params": {
+              "hide_border": true
+            }
+          }
+        },
+        {
+          "width": 33,
+          "block": {
+            "type": "widget",
+            "widgetId": "top-langs",
+            "params": {
+              "hide_border": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": "auto",
+          "block": {
+            "type": "widget",
+            "widgetId": "social-badge",
+            "params": {
+              "platform": "linkedin"
+            }
+          }
+        },
+        {
+          "width": "auto",
+          "block": {
+            "type": "widget",
+            "widgetId": "social-badge",
+            "params": {
+              "platform": "x"
+            }
+          }
+        },
+        {
+          "width": "auto",
+          "block": {
+            "type": "widget",
+            "widgetId": "social-badge",
+            "params": {
+              "platform": "email"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": 100,
+          "block": {
+            "type": "widget",
+            "widgetId": "capsule-banner",
+            "params": {
+              "section": "footer",
+              "height": 100,
+              "text": "",
+              "animation": ""
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
