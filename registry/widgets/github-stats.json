@@ -1,0 +1,16 @@
+{
+  "id": "github-stats",
+  "name": "GitHub Stats",
+  "author": "anuraghazra",
+  "homepage": "https://github.com/anuraghazra/github-readme-stats",
+  "urlTemplate": "https://github-readme-stats.vercel.app/api?username={username}&show_icons={show_icons}&hide_border={hide_border}&theme={theme}",
+  "linkTemplate": "https://github.com/{username}",
+  "defaultWidth": 50,
+  "aspectRatio": 2.395,
+  "params": [
+    { "key": "username", "type": "username" },
+    { "key": "show_icons", "type": "boolean", "label": "Icons", "default": true },
+    { "key": "hide_border", "type": "boolean", "label": "Hide border", "default": false }
+  ],
+  "theme": { "param": "theme", "light": "default", "dark": "github_dark" }
+}

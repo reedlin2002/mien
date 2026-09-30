@@ -1,0 +1,36 @@
+{
+  "id": "capsule-banner",
+  "name": "Banner",
+  "author": "kyechan99",
+  "homepage": "https://github.com/kyechan99/capsule-render",
+  "urlTemplate": "https://capsule-render.vercel.app/api?type={type}&color={color}&height={height}&section=header&text={text}&fontSize={fontSize}",
+  "defaultWidth": 100,
+  "aspectRatio": 7.117,
+  "params": [
+    {
+      "key": "type",
+      "type": "enum",
+      "label": "Shape",
+      "default": "waving",
+      "options": [
+        { "value": "waving" },
+        { "value": "rect" },
+        { "value": "soft" },
+        { "value": "slice" },
+        { "value": "egg" },
+        { "value": "shark" },
+        { "value": "cylinder" }
+      ]
+    },
+    {
+      "key": "color",
+      "type": "enum",
+      "label": "Color",
+      "default": "gradient",
+      "options": [{ "value": "gradient" }, { "value": "auto" }, { "value": "timeGradient" }]
+    },
+    { "key": "text", "type": "text", "label": "Text", "default": "{username}" },
+    { "key": "height", "type": "number", "label": "Height", "default": 120 },
+    { "key": "fontSize", "type": "number", "label": "Font size", "default": 50 }
+  ]
+}
