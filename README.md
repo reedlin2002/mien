@@ -5,13 +5,15 @@
 <p align="center">Lay out your GitHub profile README like a slide.<br><b>What you see is what GitHub shows.</b></p>
 
 <p align="center">
-  <a href="https://reedlin2002.github.io/mien/editor/"><img src="https://img.shields.io/badge/open_the_editor-2a1206?style=for-the-badge" alt="Open the editor"></a>
+  <a href="https://mien.kanewolf98.workers.dev/editor/"><img src="https://img.shields.io/badge/open_the_editor-2a1206?style=for-the-badge" alt="Open the editor"></a>
   <img src="https://img.shields.io/badge/widgets-14-f26b3a" alt="14 widgets">
   <img src="https://img.shields.io/badge/license-MIT-97ca00" alt="MIT license">
   <img src="https://img.shields.io/badge/PRs-welcome-4c1" alt="PRs welcome">
 </p>
 
-<!-- Demo GIF goes here once the site is live: a stats card dragged in, a corner pulled to 50%, dark mode, Copy to GitHub, paste, commit. -->
+<p align="center"><a href="https://mien.kanewolf98.workers.dev/editor/"><img src="docs/screenshot.png" alt="The mien editor: widgets on the left, a GitHub profile README in the middle with a stats card selected, its settings on the right" width="100%"></a></p>
+
+<p align="center"><a href="https://mien.kanewolf98.workers.dev/">mien.kanewolf98.workers.dev</a></p>
 
 ## How it works
 
