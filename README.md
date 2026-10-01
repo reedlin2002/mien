@@ -2,6 +2,8 @@
 
 <p align="center"><a href="https://mien.kanewolf98.workers.dev/"><img src="https://mien.kanewolf98.workers.dev/readme/header.png" alt="mien: a drag-and-drop editor for your GitHub profile README" width="100%"></a></p>
 
+<p align="center"><b>English</b> · <a href="https://github.com/reedlin2002/mien/blob/main/README.zh-TW.md">繁體中文</a></p>
+
 <p align="center"><img src="https://readme-typing-svg.demolab.com?font=JetBrains%20Mono&amp;weight=500&amp;size=26&amp;duration=2600&amp;pause=1200&amp;color=C4501F&amp;center=true&amp;vCenter=true&amp;width=640&amp;height=56&amp;lines=Drag.%20Drop.%20Done.%3BNo%20Markdown.%20No%20login." alt="Typing text" width="75%"></p>
 
 <p align="center"><a href="https://mien.kanewolf98.workers.dev/editor/"><img src="https://img.shields.io/static/v1?label=&amp;message=OPEN%20THE%20EDITOR&amp;color=2a1206&amp;style=for-the-badge" alt="Open the editor"></a> <a href="https://mien.kanewolf98.workers.dev/#widgets"><img src="https://img.shields.io/static/v1?label=&amp;message=14%20WIDGETS&amp;color=f26b3a&amp;style=for-the-badge" alt="14 widgets"></a> <a href="https://github.com/reedlin2002/mien/blob/main/LICENSE"><img src="https://img.shields.io/static/v1?label=&amp;message=MIT&amp;color=6e7781&amp;style=for-the-badge" alt="MIT license"></a></p>

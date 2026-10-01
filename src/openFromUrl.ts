@@ -1,4 +1,5 @@
 import readme from '../docs/readme.mien.json';
+import readmeZh from '../docs/readme.zh-TW.mien.json';
 import { instantiate, type RowSpec } from './model/doc';
 import { replaceRows } from './model/ops';
 import { useEditor } from './store/editor';
@@ -6,7 +7,8 @@ import { useEditor } from './store/editor';
 // Layouts that can be opened straight from a link, e.g. /editor/?open=readme opens the
 // layout this project's own README was made from.
 const LAYOUTS: Record<string, RowSpec[]> = {
-  readme: readme.rows as RowSpec[]
+  readme: readme.rows as RowSpec[],
+  'readme-zh': readmeZh.rows as RowSpec[]
 };
 
 /**

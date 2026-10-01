@@ -10,9 +10,9 @@
             "type": "widget",
             "widgetId": "image",
             "params": {
-              "src": "https://mien.kanewolf98.workers.dev/readme/header.png",
+              "src": "https://mien.kanewolf98.workers.dev/readme/header-zh.png",
               "link": "https://mien.kanewolf98.workers.dev/",
-              "alt": "mien: a drag-and-drop editor for your GitHub profile README"
+              "alt": "mien：拖拉就能排好你的 GitHub 個人頁 README"
             }
           }
         }
@@ -29,14 +29,14 @@
             "runs": [
               {
                 "text": "English",
-                "bold": true
+                "href": "https://github.com/reedlin2002/mien/blob/main/README.md"
               },
               {
                 "text": " · "
               },
               {
                 "text": "繁體中文",
-                "href": "https://github.com/reedlin2002/mien/blob/main/README.zh-TW.md"
+                "bold": true
               }
             ]
           }
@@ -52,8 +52,8 @@
             "type": "widget",
             "widgetId": "typing-svg",
             "params": {
-              "lines": "Drag. Drop. Done.;No Markdown. No login.",
-              "font": "JetBrains Mono",
+              "lines": "拖過去。放下來。完成。;不用寫 Markdown，也不用登入。",
+              "font": "Noto Sans TC",
               "weight": "500",
               "color": "C4501F",
               "size": 26,
@@ -76,9 +76,9 @@
             "type": "widget",
             "widgetId": "image",
             "params": {
-              "src": "https://img.shields.io/static/v1?label=&message=OPEN%20THE%20EDITOR&color=2a1206&style=for-the-badge",
+              "src": "https://img.shields.io/static/v1?label=&message=%E6%89%93%E9%96%8B%E7%B7%A8%E8%BC%AF%E5%99%A8&color=2a1206&style=for-the-badge",
               "link": "https://mien.kanewolf98.workers.dev/editor/",
-              "alt": "Open the editor"
+              "alt": "打開編輯器"
             }
           }
         },
@@ -88,9 +88,9 @@
             "type": "widget",
             "widgetId": "image",
             "params": {
-              "src": "https://img.shields.io/static/v1?label=&message=14%20WIDGETS&color=f26b3a&style=for-the-badge",
+              "src": "https://img.shields.io/static/v1?label=&message=14%20%E5%80%8B%E5%B0%8F%E5%B7%A5%E5%85%B7&color=f26b3a&style=for-the-badge",
               "link": "https://mien.kanewolf98.workers.dev/#widgets",
-              "alt": "14 widgets"
+              "alt": "14 個小工具"
             }
           }
         },
@@ -100,9 +100,9 @@
             "type": "widget",
             "widgetId": "image",
             "params": {
-              "src": "https://img.shields.io/static/v1?label=&message=MIT&color=6e7781&style=for-the-badge",
+              "src": "https://img.shields.io/static/v1?label=&message=MIT%20%E6%8E%88%E6%AC%8A&color=6e7781&style=for-the-badge",
               "link": "https://github.com/reedlin2002/mien/blob/main/LICENSE",
-              "alt": "MIT license"
+              "alt": "MIT 授權"
             }
           }
         }
@@ -118,14 +118,14 @@
             "kind": "p",
             "runs": [
               {
-                "text": "What is this?",
+                "text": "這是什麼？",
                 "bold": true
               },
               {
-                "text": "\nA visual editor for GitHub profile READMEs.\nDrag widgets in. Pull a corner to resize.\nCopy the result to your profile.\n"
+                "text": "\n給 GitHub 個人頁 README 用的視覺化編輯器。\n把小工具拖進來，拉角落調整大小，\n再把結果複製到你的個人頁。\n"
               },
               {
-                "text": "No Markdown. No login.",
+                "text": "不用寫 Markdown，也不用登入。",
                 "bold": true
               }
             ]
@@ -139,7 +139,7 @@
             "params": {
               "src": "https://mien.kanewolf98.workers.dev/demo.gif",
               "link": "https://mien.kanewolf98.workers.dev/editor/",
-              "alt": "The editor in use: a banner, a stats card and top languages dragged onto the page, a card widened by its corner, dark mode, then Copy to GitHub"
+              "alt": "編輯器的實際操作：把橫幅、統計卡和常用語言拖進頁面，拉角落放大卡片，切換深色模式，最後按 Copy to GitHub"
             }
           }
         }
@@ -155,7 +155,7 @@
             "kind": "h3",
             "runs": [
               {
-                "text": "Put any of these on your page"
+                "text": "這些都能放上你的頁面"
               }
             ]
           }
@@ -183,9 +183,9 @@
             "type": "widget",
             "widgetId": "image",
             "params": {
-              "src": "https://img.shields.io/static/v1?label=&message=streak%20stats&color=eaeef2&style=flat-square",
+              "src": "https://img.shields.io/static/v1?label=&message=%E9%80%A3%E7%BA%8C%E8%B2%A2%E7%8D%BB&color=eaeef2&style=flat-square",
               "link": "https://github.com/DenverCoder1/github-readme-streak-stats",
-              "alt": "streak stats"
+              "alt": "連續貢獻"
             }
           }
         },
@@ -231,9 +231,9 @@
             "type": "widget",
             "widgetId": "image",
             "params": {
-              "src": "https://img.shields.io/static/v1?label=&message=profile%20summary%20cards&color=eaeef2&style=flat-square",
+              "src": "https://img.shields.io/static/v1?label=&message=%E8%B2%A2%E7%8D%BB%E7%B8%BD%E8%A6%BD%E5%8D%A1&color=eaeef2&style=flat-square",
               "link": "https://github.com/vn7n24fzkq/github-profile-summary-cards",
-              "alt": "profile summary cards"
+              "alt": "貢獻總覽卡"
             }
           }
         }
@@ -248,9 +248,9 @@
             "type": "widget",
             "widgetId": "image",
             "params": {
-              "src": "https://img.shields.io/static/v1?label=&message=contribution%20chart&color=eaeef2&style=flat-square",
+              "src": "https://img.shields.io/static/v1?label=&message=%E8%B2%A2%E7%8D%BB%E5%9C%96&color=eaeef2&style=flat-square",
               "link": "https://github.com/2016rshah/githubchart-api",
-              "alt": "contribution chart"
+              "alt": "貢獻圖"
             }
           }
         },
@@ -260,9 +260,9 @@
             "type": "widget",
             "widgetId": "image",
             "params": {
-              "src": "https://img.shields.io/static/v1?label=&message=LeetCode%20card&color=eaeef2&style=flat-square",
+              "src": "https://img.shields.io/static/v1?label=&message=LeetCode%20%E5%8D%A1%E7%89%87&color=eaeef2&style=flat-square",
               "link": "https://github.com/JacobLinCool/LeetCode-Stats-Card",
-              "alt": "LeetCode card"
+              "alt": "LeetCode 卡片"
             }
           }
         },
@@ -272,9 +272,9 @@
             "type": "widget",
             "widgetId": "image",
             "params": {
-              "src": "https://img.shields.io/static/v1?label=&message=shields.io%20badges&color=eaeef2&style=flat-square",
+              "src": "https://img.shields.io/static/v1?label=&message=shields.io%20%E5%BE%BD%E7%AB%A0&color=eaeef2&style=flat-square",
               "link": "https://shields.io",
-              "alt": "shields.io badges"
+              "alt": "shields.io 徽章"
             }
           }
         },
@@ -284,9 +284,9 @@
             "type": "widget",
             "widgetId": "image",
             "params": {
-              "src": "https://img.shields.io/static/v1?label=&message=view%20counter&color=eaeef2&style=flat-square",
+              "src": "https://img.shields.io/static/v1?label=&message=%E7%80%8F%E8%A6%BD%E6%AC%A1%E6%95%B8&color=eaeef2&style=flat-square",
               "link": "https://github.com/antonkomarev/github-profile-views-counter",
-              "alt": "view counter"
+              "alt": "瀏覽次數"
             }
           }
         },
@@ -296,8 +296,8 @@
             "type": "widget",
             "widgetId": "image",
             "params": {
-              "src": "https://img.shields.io/static/v1?label=&message=any%20image%20or%20GIF&color=eaeef2&style=flat-square",
-              "alt": "any image or GIF"
+              "src": "https://img.shields.io/static/v1?label=&message=%E4%BB%BB%E4%BD%95%E5%9C%96%E7%89%87%E6%88%96%20GIF&color=eaeef2&style=flat-square",
+              "alt": "任何圖片或 GIF"
             }
           }
         }
@@ -313,7 +313,7 @@
             "kind": "h3",
             "runs": [
               {
-                "text": "Why it looks the same on GitHub"
+                "text": "為什麼在 GitHub 上看起來一模一樣"
               }
             ]
           }
@@ -330,7 +330,7 @@
             "kind": "p",
             "runs": [
               {
-                "text": "The canvas only lets you build layouts GitHub can render: rows, side-by-side cells, widths that snap.\nIt's drawn with GitHub's own CSS at a profile's real width, and CI checks every change against GitHub's Markdown renderer."
+                "text": "畫布只讓你排出 GitHub 顯示得出來的版面：一列一列往下排、同一列並排、寬度會自動吸附。\n它用 GitHub 自己的 CSS、照個人頁的實際寬度來畫，每次修改也都會在 CI 裡送進 GitHub 的 Markdown 渲染器檢查。"
               }
             ]
           }
@@ -347,11 +347,11 @@
             "kind": "p",
             "runs": [
               {
-                "text": "1 · Type your username",
+                "text": "1 · 輸入帳號",
                 "bold": true
               },
               {
-                "text": "\nTemplates fill in with your stats"
+                "text": "\n範本會套上你的數據"
               }
             ]
           }
@@ -363,11 +363,11 @@
             "kind": "p",
             "runs": [
               {
-                "text": "2 · Arrange it",
+                "text": "2 · 排版",
                 "bold": true
               },
               {
-                "text": "\nDrag, resize, pick themes"
+                "text": "\n拖拉、縮放、挑主題"
               }
             ]
           }
@@ -379,11 +379,11 @@
             "kind": "p",
             "runs": [
               {
-                "text": "3 · Copy to GitHub",
+                "text": "3 · 複製到 GitHub",
                 "bold": true
               },
               {
-                "text": "\nPaste, commit, done"
+                "text": "\n貼上、commit，完成"
               }
             ]
           }
@@ -400,7 +400,7 @@
             "widgetId": "image",
             "params": {
               "src": "https://mien.kanewolf98.workers.dev/readme/footer.svg",
-              "alt": "An orange wave"
+              "alt": "橘色波浪"
             }
           }
         }
@@ -416,21 +416,21 @@
             "kind": "p",
             "runs": [
               {
-                "text": "This README was laid out in mien. "
+                "text": "這份 README 是用 mien 排出來的。"
               },
               {
-                "text": "Open it in the editor",
-                "href": "https://mien.kanewolf98.workers.dev/editor/?open=readme"
+                "text": "在編輯器裡打開",
+                "href": "https://mien.kanewolf98.workers.dev/editor/?open=readme-zh"
               },
               {
-                "text": " to see how.\nRunning it locally or adding a widget: "
+                "text": "看看是怎麼做的。\n想在本機執行或新增小工具："
               },
               {
                 "text": "CONTRIBUTING.md",
                 "href": "https://github.com/reedlin2002/mien/blob/main/CONTRIBUTING.md"
               },
               {
-                "text": "."
+                "text": "。"
               }
             ]
           }

@@ -14,7 +14,7 @@ React, TypeScript, Vite, Tailwind, dnd-kit and zustand. The layout model (`src/m
 
 ## The README is made with mien
 
-`README.md` is compiled from `docs/readme.mien.json` by the same compiler the editor uses. Change the JSON, run `npm run readme`, and commit both; a test fails if they drift apart.
+`README.md` and `README.zh-TW.md` are compiled from `docs/readme.mien.json` and `docs/readme.zh-TW.mien.json` by the same compiler the editor uses. Change the JSON, run `npm run readme`, and commit both; a test fails if they drift apart. The title block is a picture (GitHub can't load web fonts); `npm run readme:art` renders it into `public/readme/`.
 
 ## Adding a widget
 
