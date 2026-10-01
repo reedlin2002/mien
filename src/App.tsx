@@ -3,6 +3,7 @@ import { installMarkdownTheme } from './canvas/markdownTheme';
 import { Workspace } from './canvas/Workspace';
 import { useT } from './i18n';
 import { duplicateCell, removeCell } from './model/ops';
+import { openFromUrl } from './openFromUrl';
 import { useEditor } from './store/editor';
 import { usePrefs } from './store/prefs';
 import { TemplateGallery } from './templates/TemplateGallery';
@@ -13,6 +14,9 @@ import { Toolbar } from './ui/Toolbar';
 import { Welcome } from './ui/Welcome';
 
 installMarkdownTheme();
+
+// Runs once, before the first render, so a link like ?open=readme skips the welcome.
+const openedFromLink = openFromUrl();
 
 function isTyping(target: EventTarget | null): boolean {
   return target instanceof HTMLElement && (target.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName));
@@ -67,7 +71,7 @@ export function App() {
   // A first-time visitor (no username, nothing on the page) is asked for their username first.
   const [dialog, setDialog] = useState<'export' | 'templates' | 'welcome' | null>(() => {
     const { doc } = useEditor.getState();
-    return !doc.username && doc.rows.length === 0 ? 'welcome' : null;
+    return !openedFromLink && !doc.username && doc.rows.length === 0 ? 'welcome' : null;
   });
   useShortcuts(dialog === null);
 

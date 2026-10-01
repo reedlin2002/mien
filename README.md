@@ -1,8 +1,8 @@
 <!-- made with mien -->
 
-<p align="center"><img src="https://capsule-render.vercel.app/api?type=waving&amp;color=0%3AF26B3A%2C100%3A2A1206&amp;height=220&amp;section=header&amp;text=mien&amp;fontSize=90&amp;fontColor=FFF6F0&amp;fontAlignY=36&amp;desc=Lay%20out%20your%20GitHub%20profile%20like%20a%20slide&amp;descSize=22&amp;descAlignY=58&amp;animation=fadeIn" alt="Banner" width="100%"></p>
+<p align="center"><a href="https://mien.kanewolf98.workers.dev/"><img src="https://mien.kanewolf98.workers.dev/readme/header.png" alt="mien: a drag-and-drop editor for your GitHub profile README" width="100%"></a></p>
 
-<p align="center"><img src="https://readme-typing-svg.demolab.com?font=JetBrains%20Mono&amp;weight=500&amp;size=26&amp;duration=2600&amp;pause=1200&amp;color=F26B3A&amp;center=true&amp;vCenter=true&amp;width=640&amp;height=56&amp;lines=Drag.%20Drop.%20Done.%3BWhat%20you%20see%20is%20what%20GitHub%20shows.%3BNo%20Markdown.%20No%20login." alt="Typing text" width="75%"></p>
+<p align="center"><img src="https://readme-typing-svg.demolab.com?font=JetBrains%20Mono&amp;weight=500&amp;size=26&amp;duration=2600&amp;pause=1200&amp;color=C4501F&amp;center=true&amp;vCenter=true&amp;width=640&amp;height=56&amp;lines=Drag.%20Drop.%20Done.%3BNo%20Markdown.%20No%20login." alt="Typing text" width="75%"></p>
 
 <p align="center"><a href="https://mien.kanewolf98.workers.dev/editor/"><img src="https://img.shields.io/static/v1?label=&amp;message=OPEN%20THE%20EDITOR&amp;color=2a1206&amp;style=for-the-badge" alt="Open the editor"></a> <a href="https://mien.kanewolf98.workers.dev/#widgets"><img src="https://img.shields.io/static/v1?label=&amp;message=14%20WIDGETS&amp;color=f26b3a&amp;style=for-the-badge" alt="14 widgets"></a> <a href="https://github.com/reedlin2002/mien/blob/main/LICENSE"><img src="https://img.shields.io/static/v1?label=&amp;message=MIT&amp;color=6e7781&amp;style=for-the-badge" alt="MIT license"></a></p>
 
@@ -20,6 +20,6 @@
 
 <table align="center"><tr><td width="33%" align="center"><p><b>1 · Type your username</b><br>Templates fill in with your stats</p></td><td width="33%" align="center"><p><b>2 · Arrange it</b><br>Drag, resize, pick themes</p></td><td width="33%" align="center"><p><b>3 · Copy to GitHub</b><br>Paste, commit, done</p></td></tr></table>
 
-<p align="center"><img src="https://capsule-render.vercel.app/api?type=waving&amp;color=0%3AF26B3A%2C100%3A2A1206&amp;height=120&amp;section=footer&amp;text=&amp;fontSize=55&amp;fontColor=ffffff&amp;fontAlignY=35&amp;desc=&amp;descSize=20&amp;descAlignY=58&amp;animation=" alt="Banner" width="100%"></p>
+<p align="center"><img src="https://mien.kanewolf98.workers.dev/readme/footer.svg" alt="An orange wave" width="100%"></p>
 
-<p align="center">This README was laid out in <a href="https://mien.kanewolf98.workers.dev/editor/">mien</a>. Running it locally or adding a widget: <a href="https://github.com/reedlin2002/mien/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
+<p align="center">This README was laid out in mien. <a href="https://mien.kanewolf98.workers.dev/editor/?open=readme">Open it in the editor</a> to see how.<br>Running it locally or adding a widget: <a href="https://github.com/reedlin2002/mien/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
