@@ -1,0 +1,9 @@
+// Cloudflare Workers serves the built site as static files: the site at / and the
+// editor at /editor/. `name` must match the Worker's name in the dashboard.
+{
+  "name": "mien",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./dist"
+  }
+}
