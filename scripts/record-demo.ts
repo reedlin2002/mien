@@ -1,6 +1,6 @@
-// Records docs/demo.gif: drives the live editor in headless Chrome, captures frames with
-// the DevTools screencast, and encodes them into a GIF. Uses the Chrome already installed
-// (set CHROME_PATH if it is somewhere else).
+// Records public/demo.gif, which the site serves and the README shows: drives the live
+// editor in headless Chrome, captures frames with the DevTools screencast, and encodes
+// them into a GIF. Uses the Chrome already installed (set CHROME_PATH if it is elsewhere).
 //
 //   npm run demo
 import { writeFileSync } from 'node:fs';
@@ -10,7 +10,7 @@ const { GIFEncoder, quantize, applyPalette } = gifenc;
 import jpeg from 'jpeg-js';
 
 const URL = process.env.EDITOR_URL ?? 'https://mien.kanewolf98.workers.dev/editor/';
-const OUT = process.argv[2] ?? 'docs/demo.gif';
+const OUT = process.argv[2] ?? 'public/demo.gif';
 const CHROME =
   process.env.CHROME_PATH ??
   (process.platform === 'win32'

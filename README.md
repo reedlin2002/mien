@@ -1,68 +1,25 @@
-<p align="center"><img src="docs/logo.svg" alt="" width="88"></p>
+<!-- made with mien -->
 
-<h1 align="center">mien</h1>
+<p align="center"><img src="https://capsule-render.vercel.app/api?type=waving&amp;color=0%3AF26B3A%2C100%3A2A1206&amp;height=220&amp;section=header&amp;text=mien&amp;fontSize=90&amp;fontColor=FFF6F0&amp;fontAlignY=36&amp;desc=Lay%20out%20your%20GitHub%20profile%20like%20a%20slide&amp;descSize=22&amp;descAlignY=58&amp;animation=fadeIn" alt="Banner" width="100%"></p>
 
-<p align="center">Lay out your GitHub profile README like a slide.<br><b>What you see is what GitHub shows.</b></p>
+<p align="center"><img src="https://readme-typing-svg.demolab.com?font=JetBrains%20Mono&amp;weight=500&amp;size=26&amp;duration=2600&amp;pause=1200&amp;color=F26B3A&amp;center=true&amp;vCenter=true&amp;width=640&amp;height=56&amp;lines=Drag.%20Drop.%20Done.%3BWhat%20you%20see%20is%20what%20GitHub%20shows.%3BNo%20Markdown.%20No%20login." alt="Typing text" width="75%"></p>
 
-<p align="center">
-  <a href="https://mien.kanewolf98.workers.dev/editor/"><img src="https://img.shields.io/badge/open_the_editor-2a1206?style=for-the-badge" alt="Open the editor"></a>
-  <img src="https://img.shields.io/badge/widgets-14-f26b3a" alt="14 widgets">
-  <img src="https://img.shields.io/badge/license-MIT-97ca00" alt="MIT license">
-  <img src="https://img.shields.io/badge/PRs-welcome-4c1" alt="PRs welcome">
-</p>
+<p align="center"><a href="https://mien.kanewolf98.workers.dev/editor/"><img src="https://img.shields.io/static/v1?label=&amp;message=OPEN%20THE%20EDITOR&amp;color=2a1206&amp;style=for-the-badge" alt="Open the editor"></a> <a href="https://mien.kanewolf98.workers.dev/#widgets"><img src="https://img.shields.io/static/v1?label=&amp;message=14%20WIDGETS&amp;color=f26b3a&amp;style=for-the-badge" alt="14 widgets"></a> <a href="https://github.com/reedlin2002/mien/blob/main/LICENSE"><img src="https://img.shields.io/static/v1?label=&amp;message=MIT&amp;color=6e7781&amp;style=for-the-badge" alt="MIT license"></a></p>
 
-<p align="center"><a href="https://mien.kanewolf98.workers.dev/editor/"><img src="docs/demo.gif" alt="Typing a username, dragging a banner, a stats card and top languages onto the page, widening a card by its corner, switching to dark mode, then opening Copy to GitHub" width="100%"></a></p>
+<table align="center"><tr><td width="50%" align="center"><p><b>What is this?</b><br>A visual editor for GitHub profile READMEs.<br>Drag widgets in. Pull a corner to resize.<br>Copy the result to your profile.<br><b>No Markdown. No login.</b></p></td><td width="50%" align="center"><a href="https://mien.kanewolf98.workers.dev/editor/"><img src="https://mien.kanewolf98.workers.dev/demo.gif" alt="The editor in use: a banner, a stats card and top languages dragged onto the page, a card widened by its corner, dark mode, then Copy to GitHub" width="100%"></a></td></tr></table>
 
-<p align="center"><a href="https://mien.kanewolf98.workers.dev/">mien.kanewolf98.workers.dev</a></p>
+<h3 align="center">Put any of these on your page</h3>
 
-## How it works
+<p align="center"><a href="https://github.com/anuraghazra/github-readme-stats"><img src="https://img.shields.io/static/v1?label=&amp;message=github-readme-stats&amp;color=eaeef2&amp;style=flat-square" alt="github-readme-stats"></a> <a href="https://github.com/DenverCoder1/github-readme-streak-stats"><img src="https://img.shields.io/static/v1?label=&amp;message=streak%20stats&amp;color=eaeef2&amp;style=flat-square" alt="streak stats"></a> <a href="https://github.com/kyechan99/capsule-render"><img src="https://img.shields.io/static/v1?label=&amp;message=capsule-render&amp;color=eaeef2&amp;style=flat-square" alt="capsule-render"></a> <a href="https://github.com/DenverCoder1/readme-typing-svg"><img src="https://img.shields.io/static/v1?label=&amp;message=readme-typing-svg&amp;color=eaeef2&amp;style=flat-square" alt="readme-typing-svg"></a> <a href="https://github.com/tandpfun/skill-icons"><img src="https://img.shields.io/static/v1?label=&amp;message=skill-icons&amp;color=eaeef2&amp;style=flat-square" alt="skill-icons"></a> <a href="https://github.com/vn7n24fzkq/github-profile-summary-cards"><img src="https://img.shields.io/static/v1?label=&amp;message=profile%20summary%20cards&amp;color=eaeef2&amp;style=flat-square" alt="profile summary cards"></a></p>
 
-<table>
-  <tr>
-    <td width="33%" valign="top"><b>1. Drag</b><br>Pick a banner, a stats card, your skills or a line of text, and drop it on the page. An orange line shows where it lands.</td>
-    <td width="33%" valign="top"><b>2. Resize</b><br>Pull a corner. Widths snap to steps GitHub renders exactly, so nothing jumps after you commit.</td>
-    <td width="33%" valign="top"><b>3. Copy</b><br>One button copies your README and opens it on GitHub. Paste, commit, done. No login.</td>
-  </tr>
-</table>
+<p align="center"><a href="https://github.com/2016rshah/githubchart-api"><img src="https://img.shields.io/static/v1?label=&amp;message=contribution%20chart&amp;color=eaeef2&amp;style=flat-square" alt="contribution chart"></a> <a href="https://github.com/JacobLinCool/LeetCode-Stats-Card"><img src="https://img.shields.io/static/v1?label=&amp;message=LeetCode%20card&amp;color=eaeef2&amp;style=flat-square" alt="LeetCode card"></a> <a href="https://shields.io"><img src="https://img.shields.io/static/v1?label=&amp;message=shields.io%20badges&amp;color=eaeef2&amp;style=flat-square" alt="shields.io badges"></a> <a href="https://github.com/antonkomarev/github-profile-views-counter"><img src="https://img.shields.io/static/v1?label=&amp;message=view%20counter&amp;color=eaeef2&amp;style=flat-square" alt="view counter"></a> <img src="https://img.shields.io/static/v1?label=&amp;message=any%20image%20or%20GIF&amp;color=eaeef2&amp;style=flat-square" alt="any image or GIF"></p>
 
-## What you can put on it
+<h3 align="center">Why it looks the same on GitHub</h3>
 
-Banners · typing text · GitHub stats · top languages · streaks · contribution chart · repository cards · LeetCode · skill icons · social badges · view counter · followers · any image or GIF, plus headings, paragraphs, bold and links.
+<p align="center">The canvas only lets you build layouts GitHub can render: rows, side-by-side cells, widths that snap.<br>It's drawn with GitHub's own CSS at a profile's real width, and CI checks every change against GitHub's Markdown renderer.</p>
 
-Every widget comes from an open-source project, and its author is credited right in the editor.
+<table align="center"><tr><td width="33%" align="center"><p><b>1 · Type your username</b><br>Templates fill in with your stats</p></td><td width="33%" align="center"><p><b>2 · Arrange it</b><br>Drag, resize, pick themes</p></td><td width="33%" align="center"><p><b>3 · Copy to GitHub</b><br>Paste, commit, done</p></td></tr></table>
 
-## Why it never breaks on GitHub
+<p align="center"><img src="https://capsule-render.vercel.app/api?type=waving&amp;color=0%3AF26B3A%2C100%3A2A1206&amp;height=120&amp;section=footer&amp;text=&amp;fontSize=55&amp;fontColor=ffffff&amp;fontAlignY=35&amp;desc=&amp;descSize=20&amp;descAlignY=58&amp;animation=" alt="Banner" width="100%"></p>
 
-GitHub strips styling from READMEs: no `style`, no positioning, no scripts. What survives is `align`, `width`, tables and `<picture>` for light and dark variants. Instead of letting you place things anywhere and hoping, mien only lets you build layouts GitHub can render: rows stacked down the page, cells side by side, widths that snap.
-
-The canvas is drawn with GitHub's own markdown CSS at a profile README's real width and font size, and CI sends compiled READMEs through GitHub's Markdown API to check that nothing the layout depends on gets stripped.
-
-## Add your widget
-
-Run a README widget? Describe it in one JSON file in [`registry/widgets`](registry/widgets) and open a pull request. The settings panel is generated from it. See [CONTRIBUTING.md](CONTRIBUTING.md).
-
-```json
-{
-  "id": "my-widget",
-  "urlTemplate": "https://my-widget.dev/api?user={username}&theme={theme}",
-  "params": [{ "key": "theme", "type": "enum", "preview": true, "options": [ … ] }]
-}
-```
-
-## Development
-
-```sh
-npm install
-npm run dev        # site at /, editor at /editor/
-npm test           # set GITHUB_TOKEN to also run the GitHub render checks
-npm run build
-npm run demo       # re-record docs/demo.gif from the live editor (uses your installed Chrome)
-```
-
-React, TypeScript, Vite, Tailwind, dnd-kit and zustand. The layout model (`src/model`), compiler (`src/compile`) and drop geometry (`src/canvas/dropTarget.ts`) are plain functions with their own tests.
-
-Every README mien exports starts with an invisible `<!-- made with mien -->` comment, so usage can be counted with GitHub code search. You can switch it off when you export.
-
----
-
-<p align="center">MIT license · made by <a href="https://github.com/reedlin2002">@reedlin2002</a></p>
+<p align="center">This README was laid out in <a href="https://mien.kanewolf98.workers.dev/editor/">mien</a>. Running it locally or adding a widget: <a href="https://github.com/reedlin2002/mien/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>

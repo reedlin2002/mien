@@ -33,7 +33,10 @@ function compileWidget(block: WidgetBlock, width: CellWidth, ctx: Context): stri
   const light = widgetSrc(def, block.params, ctx.username, ctx.mode ?? 'light');
   const dark = widgetSrc(def, block.params, ctx.username, ctx.mode ?? 'dark');
   const size = width === 'auto' ? '' : ` width="${width}%"`;
-  const img = `<img src="${escapeAttr(light)}" alt="${escapeAttr(def.name)}"${size}>`;
+  // A widget may describe its own picture (an `alt` param); otherwise its name stands in.
+  const described = def.params.some((p) => p.key === 'alt') && String(block.params.alt ?? '').trim();
+  const alt = described || def.name;
+  const img = `<img src="${escapeAttr(light)}" alt="${escapeAttr(alt)}"${size}>`;
   // Only widgets left on "auto" differ between modes; the rest need no <picture>.
   const body =
     dark === light ? img : `<picture><source media="(prefers-color-scheme: dark)" srcset="${escapeAttr(dark)}">${img}</picture>`;

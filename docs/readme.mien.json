@@ -1,0 +1,219 @@
+{
+  "username": "reedlin2002",
+  "rows": [
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": 100,
+          "block": {
+            "type": "widget",
+            "widgetId": "capsule-banner",
+            "params": {
+              "type": "waving",
+              "color": "0:F26B3A,100:2A1206",
+              "section": "header",
+              "text": "mien",
+              "desc": "Lay out your GitHub profile like a slide",
+              "fontColor": "FFF6F0",
+              "height": 220,
+              "fontSize": 90,
+              "fontAlignY": 36,
+              "descSize": 22,
+              "descAlignY": 58,
+              "animation": "fadeIn"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": 75,
+          "block": {
+            "type": "widget",
+            "widgetId": "typing-svg",
+            "params": {
+              "lines": "Drag. Drop. Done.;What you see is what GitHub shows.;No Markdown. No login.",
+              "font": "JetBrains Mono",
+              "weight": "500",
+              "color": "F26B3A",
+              "size": 26,
+              "center": true,
+              "width": 640,
+              "height": 56,
+              "duration": 2600,
+              "pause": 1200
+            }
+          }
+        }
+      ]
+    },
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": "auto",
+          "block": {
+            "type": "widget",
+            "widgetId": "image",
+            "params": {
+              "src": "https://img.shields.io/static/v1?label=&message=OPEN%20THE%20EDITOR&color=2a1206&style=for-the-badge",
+              "link": "https://mien.kanewolf98.workers.dev/editor/",
+              "alt": "Open the editor"
+            }
+          }
+        },
+        {
+          "width": "auto",
+          "block": {
+            "type": "widget",
+            "widgetId": "image",
+            "params": {
+              "src": "https://img.shields.io/static/v1?label=&message=14%20WIDGETS&color=f26b3a&style=for-the-badge",
+              "link": "https://mien.kanewolf98.workers.dev/#widgets",
+              "alt": "14 widgets"
+            }
+          }
+        },
+        {
+          "width": "auto",
+          "block": {
+            "type": "widget",
+            "widgetId": "image",
+            "params": {
+              "src": "https://img.shields.io/static/v1?label=&message=MIT&color=6e7781&style=for-the-badge",
+              "link": "https://github.com/reedlin2002/mien/blob/main/LICENSE",
+              "alt": "MIT license"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": 50,
+          "block": {
+            "type": "text",
+            "kind": "p",
+            "runs": [
+              { "text": "What is this?", "bold": true },
+              { "text": "\nA visual editor for GitHub profile READMEs.\nDrag widgets in. Pull a corner to resize.\nCopy the result to your profile.\n" },
+              { "text": "No Markdown. No login.", "bold": true }
+            ]
+          }
+        },
+        {
+          "width": 50,
+          "block": {
+            "type": "widget",
+            "widgetId": "image",
+            "params": {
+              "src": "https://mien.kanewolf98.workers.dev/demo.gif",
+              "link": "https://mien.kanewolf98.workers.dev/editor/",
+              "alt": "The editor in use: a banner, a stats card and top languages dragged onto the page, a card widened by its corner, dark mode, then Copy to GitHub"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "align": "center",
+      "cells": [{ "width": 100, "block": { "type": "text", "kind": "h3", "runs": [{ "text": "Put any of these on your page" }] } }]
+    },
+    {
+      "align": "center",
+      "cells": [
+        { "width": "auto", "block": { "type": "widget", "widgetId": "image", "params": { "src": "https://img.shields.io/static/v1?label=&message=github-readme-stats&color=eaeef2&style=flat-square", "link": "https://github.com/anuraghazra/github-readme-stats", "alt": "github-readme-stats" } } },
+        { "width": "auto", "block": { "type": "widget", "widgetId": "image", "params": { "src": "https://img.shields.io/static/v1?label=&message=streak%20stats&color=eaeef2&style=flat-square", "link": "https://github.com/DenverCoder1/github-readme-streak-stats", "alt": "streak stats" } } },
+        { "width": "auto", "block": { "type": "widget", "widgetId": "image", "params": { "src": "https://img.shields.io/static/v1?label=&message=capsule-render&color=eaeef2&style=flat-square", "link": "https://github.com/kyechan99/capsule-render", "alt": "capsule-render" } } },
+        { "width": "auto", "block": { "type": "widget", "widgetId": "image", "params": { "src": "https://img.shields.io/static/v1?label=&message=readme-typing-svg&color=eaeef2&style=flat-square", "link": "https://github.com/DenverCoder1/readme-typing-svg", "alt": "readme-typing-svg" } } },
+        { "width": "auto", "block": { "type": "widget", "widgetId": "image", "params": { "src": "https://img.shields.io/static/v1?label=&message=skill-icons&color=eaeef2&style=flat-square", "link": "https://github.com/tandpfun/skill-icons", "alt": "skill-icons" } } },
+        { "width": "auto", "block": { "type": "widget", "widgetId": "image", "params": { "src": "https://img.shields.io/static/v1?label=&message=profile%20summary%20cards&color=eaeef2&style=flat-square", "link": "https://github.com/vn7n24fzkq/github-profile-summary-cards", "alt": "profile summary cards" } } }
+      ]
+    },
+    {
+      "align": "center",
+      "cells": [
+        { "width": "auto", "block": { "type": "widget", "widgetId": "image", "params": { "src": "https://img.shields.io/static/v1?label=&message=contribution%20chart&color=eaeef2&style=flat-square", "link": "https://github.com/2016rshah/githubchart-api", "alt": "contribution chart" } } },
+        { "width": "auto", "block": { "type": "widget", "widgetId": "image", "params": { "src": "https://img.shields.io/static/v1?label=&message=LeetCode%20card&color=eaeef2&style=flat-square", "link": "https://github.com/JacobLinCool/LeetCode-Stats-Card", "alt": "LeetCode card" } } },
+        { "width": "auto", "block": { "type": "widget", "widgetId": "image", "params": { "src": "https://img.shields.io/static/v1?label=&message=shields.io%20badges&color=eaeef2&style=flat-square", "link": "https://shields.io", "alt": "shields.io badges" } } },
+        { "width": "auto", "block": { "type": "widget", "widgetId": "image", "params": { "src": "https://img.shields.io/static/v1?label=&message=view%20counter&color=eaeef2&style=flat-square", "link": "https://github.com/antonkomarev/github-profile-views-counter", "alt": "view counter" } } },
+        { "width": "auto", "block": { "type": "widget", "widgetId": "image", "params": { "src": "https://img.shields.io/static/v1?label=&message=any%20image%20or%20GIF&color=eaeef2&style=flat-square", "alt": "any image or GIF" } } }
+      ]
+    },
+    {
+      "align": "center",
+      "cells": [{ "width": 100, "block": { "type": "text", "kind": "h3", "runs": [{ "text": "Why it looks the same on GitHub" }] } }]
+    },
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": 100,
+          "block": {
+            "type": "text",
+            "kind": "p",
+            "runs": [
+              {
+                "text": "The canvas only lets you build layouts GitHub can render: rows, side-by-side cells, widths that snap.\nIt's drawn with GitHub's own CSS at a profile's real width, and CI checks every change against GitHub's Markdown renderer."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "align": "center",
+      "cells": [
+        { "width": 33, "block": { "type": "text", "kind": "p", "runs": [{ "text": "1 · Type your username", "bold": true }, { "text": "\nTemplates fill in with your stats" }] } },
+        { "width": 33, "block": { "type": "text", "kind": "p", "runs": [{ "text": "2 · Arrange it", "bold": true }, { "text": "\nDrag, resize, pick themes" }] } },
+        { "width": 33, "block": { "type": "text", "kind": "p", "runs": [{ "text": "3 · Copy to GitHub", "bold": true }, { "text": "\nPaste, commit, done" }] } }
+      ]
+    },
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": 100,
+          "block": {
+            "type": "widget",
+            "widgetId": "capsule-banner",
+            "params": {
+              "type": "waving",
+              "color": "0:F26B3A,100:2A1206",
+              "section": "footer",
+              "text": "",
+              "desc": "",
+              "height": 120,
+              "animation": ""
+            }
+          }
+        }
+      ]
+    },
+    {
+      "align": "center",
+      "cells": [
+        {
+          "width": 100,
+          "block": {
+            "type": "text",
+            "kind": "p",
+            "runs": [
+              { "text": "This README was laid out in " },
+              { "text": "mien", "href": "https://mien.kanewolf98.workers.dev/editor/" },
+              { "text": ". Running it locally or adding a widget: " },
+              { "text": "CONTRIBUTING.md", "href": "https://github.com/reedlin2002/mien/blob/main/CONTRIBUTING.md" },
+              { "text": "." }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -202,3 +202,24 @@ describe('natural-size widgets', () => {
     expect(compile(doc([{ cells: [[evil, 'auto']] }]), lookup)).not.toContain('javascript');
   });
 });
+
+describe('image descriptions', () => {
+  const described: WidgetDef = {
+    ...image,
+    params: [
+      { key: 'src', type: 'url', required: true },
+      { key: 'alt', type: 'text', default: '' }
+    ]
+  };
+  const lookupDescribed = (id: string) => (id === 'image' ? described : undefined);
+
+  it('uses the alt param when the widget has one', () => {
+    const block: Block = { type: 'widget', widgetId: 'image', params: { src: 'https://i.test/a.gif', alt: 'A cat "typing"' } };
+    expect(compile(doc([{ cells: [[block, 50]] }]), lookupDescribed)).toContain('alt="A cat &quot;typing&quot;"');
+  });
+
+  it('falls back to the widget name when it is left empty', () => {
+    const block: Block = { type: 'widget', widgetId: 'image', params: { src: 'https://i.test/a.gif', alt: '  ' } };
+    expect(compile(doc([{ cells: [[block, 50]] }]), lookupDescribed)).toContain('alt="Image"');
+  });
+});

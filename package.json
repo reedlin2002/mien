@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "demo": "node --experimental-strip-types --no-warnings scripts/record-demo.ts docs/demo.gif"
+    "demo": "node --experimental-strip-types --no-warnings scripts/record-demo.ts public/demo.gif",
+    "readme": "node --experimental-strip-types --no-warnings scripts/build-readme.ts"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

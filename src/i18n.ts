@@ -414,7 +414,8 @@ const registryZh: Record<string, string> = {
   Website: '網站',
   Email: 'Email',
   'Image link': '圖片網址',
-  'Opens when clicked': '點擊後開啟'
+  'Opens when clicked': '點擊後開啟',
+  Description: '圖片說明'
 };
 
 export function translate(lang: Lang, key: MessageKey, vars: Record<string, string | number> = {}): string {
