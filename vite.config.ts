@@ -3,8 +3,8 @@ import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 
-// Two pages: the site at / and the editor at /editor/. Deployed to GitHub Pages under
-// /<repo>/; BASE_PATH sets that prefix in CI.
+// Two pages: the site at / and the editor at /editor/. Served from a domain root
+// (Cloudflare Pages); set BASE_PATH only when hosting under a sub-path.
 export default defineConfig({
   base: process.env.BASE_PATH ?? '/',
   plugins: [react(), tailwindcss()],
