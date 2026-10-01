@@ -11,7 +11,7 @@
   <img src="https://img.shields.io/badge/PRs-welcome-4c1" alt="PRs welcome">
 </p>
 
-<p align="center"><a href="https://mien.kanewolf98.workers.dev/editor/"><img src="docs/screenshot.png" alt="The mien editor: widgets on the left, a GitHub profile README in the middle with a stats card selected, its settings on the right" width="100%"></a></p>
+<p align="center"><a href="https://mien.kanewolf98.workers.dev/editor/"><img src="docs/demo.gif" alt="Typing a username, dragging a banner, a stats card and top languages onto the page, widening a card by its corner, switching to dark mode, then opening Copy to GitHub" width="100%"></a></p>
 
 <p align="center"><a href="https://mien.kanewolf98.workers.dev/">mien.kanewolf98.workers.dev</a></p>
 
@@ -56,6 +56,7 @@ npm install
 npm run dev        # site at /, editor at /editor/
 npm test           # set GITHUB_TOKEN to also run the GitHub render checks
 npm run build
+npm run demo       # re-record docs/demo.gif from the live editor (uses your installed Chrome)
 ```
 
 React, TypeScript, Vite, Tailwind, dnd-kit and zustand. The layout model (`src/model`), compiler (`src/compile`) and drop geometry (`src/canvas/dropTarget.ts`) are plain functions with their own tests.
