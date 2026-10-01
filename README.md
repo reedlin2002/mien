@@ -1,46 +1,65 @@
-<!-- The project name is still provisional. -->
+<p align="center"><img src="docs/logo.svg" alt="" width="88"></p>
 
-# readme-canvas
+<h1 align="center">mien</h1>
 
-**Lay out your GitHub profile README like a slide.** Drag stats cards, banners, skill icons, badges and text onto a page, move them around, pull a corner to resize, and copy the result to your profile. You never see Markdown.
+<p align="center">Lay out your GitHub profile README like a slide.<br><b>What you see is what GitHub shows.</b></p>
 
-What you see on the canvas is what GitHub shows. The canvas is drawn with GitHub's own markdown CSS, at the width, font size and table rules of a real profile README, and it only lets you put things where GitHub can actually render them.
+<p align="center">
+  <a href="https://reedlin2002.github.io/mien/editor/"><img src="https://img.shields.io/badge/open_the_editor-2a1206?style=for-the-badge" alt="Open the editor"></a>
+  <img src="https://img.shields.io/badge/widgets-14-f26b3a" alt="14 widgets">
+  <img src="https://img.shields.io/badge/license-MIT-97ca00" alt="MIT license">
+  <img src="https://img.shields.io/badge/PRs-welcome-4c1" alt="PRs welcome">
+</p>
 
-## Why another README generator?
+<!-- Demo GIF goes here once the site is live: a stats card dragged in, a corner pulled to 50%, dark mode, Copy to GitHub, paste, commit. -->
 
-GitHub strips almost all styling from READMEs: no `style`, no positioning, no scripts. What survives is `align`, `width`, tables, and `<picture>` for light and dark variants. Most generators either hand you a form and a wall of Markdown, or let you place things freely and then quietly move them when GitHub renders the page.
+## How it works
 
-This editor goes the other way. Layouts are a tree of **rows** (stacked) and **cells** (side by side) whose only geometry is a width, snapped to steps GitHub renders faithfully (20–100%, or a badge's natural size). Dropping, moving and resizing all snap to that structure, so a layout that looks right on the canvas can't break on GitHub. A compiler turns the tree into the handful of HTML tags GitHub keeps.
+<table>
+  <tr>
+    <td width="33%" valign="top"><b>1. Drag</b><br>Pick a banner, a stats card, your skills or a line of text, and drop it on the page. An orange line shows where it lands.</td>
+    <td width="33%" valign="top"><b>2. Resize</b><br>Pull a corner. Widths snap to steps GitHub renders exactly, so nothing jumps after you commit.</td>
+    <td width="33%" valign="top"><b>3. Copy</b><br>One button copies your README and opens it on GitHub. Paste, commit, done. No login.</td>
+  </tr>
+</table>
 
-## Features
+## What you can put on it
 
-- **Drag and drop** from a palette of widgets, with a blue insertion line showing where things land
-- **Resize** with corner handles; widths snap to steps that fit beside their neighbours
-- **Text** headings and paragraphs edited in place, with bold, links and emoji. Text beside a widget becomes a table, and the canvas shows GitHub's table borders instead of pretending they won't be there
-- **Light and dark**: widgets left on "Auto" switch with the viewer's GitHub theme via `<picture>`; preview either mode with one click
-- **14 widgets** from the community: github-readme-stats (stats, top languages, repo cards), streak stats, capsule-render banners, typing SVG, skill icons, profile summary cards, contribution chart, LeetCode card, shields.io social badges, profile view counter, followers badge, and any image or GIF
-- **Settings generated from each widget's description**, with live previews for themes and layouts and an icon picker for skills
-- **Templates** to start from, undo/redo, autosave, English and 繁體中文
-- **No login, no backend.** Export copies the README and opens the right page on GitHub (creating your profile repository first if you don't have one)
+Banners · typing text · GitHub stats · top languages · streaks · contribution chart · repository cards · LeetCode · skill icons · social badges · view counter · followers · any image or GIF, plus headings, paragraphs, bold and links.
 
-## How the "what you see is what GitHub shows" claim is checked
+Every widget comes from an open-source project, and its author is credited right in the editor.
 
-- `src/compile/github-render.test.ts` sends compiled READMEs through GitHub's Markdown API in CI and fails if anything the layout depends on (`align`, `width`, `<picture>`, links, spacing between cells) gets stripped.
-- The canvas renders the same elements the compiler emits: inline images for a row of widgets, headings for text, a table for mixed rows. With GitHub's CSS applied to both, every element of every template lands on the same pixel as the exported HTML, in light and dark mode. The canvas is sized like github.com's profile README (846px wide, 14px text) and scaled to fit your window.
+## Why it never breaks on GitHub
 
-## Adding a widget
+GitHub strips styling from READMEs: no `style`, no positioning, no scripts. What survives is `align`, `width`, tables and `<picture>` for light and dark variants. Instead of letting you place things anywhere and hoping, mien only lets you build layouts GitHub can render: rows stacked down the page, cells side by side, widths that snap.
 
-Widgets are JSON files in [`registry/widgets`](registry/widgets). If you run a README widget service, send a pull request with one file describing its URL and settings; the editor builds the settings panel from it. See [CONTRIBUTING.md](CONTRIBUTING.md).
+The canvas is drawn with GitHub's own markdown CSS at a profile README's real width and font size, and CI sends compiled READMEs through GitHub's Markdown API to check that nothing the layout depends on gets stripped.
+
+## Add your widget
+
+Run a README widget? Describe it in one JSON file in [`registry/widgets`](registry/widgets) and open a pull request. The settings panel is generated from it. See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+```json
+{
+  "id": "my-widget",
+  "urlTemplate": "https://my-widget.dev/api?user={username}&theme={theme}",
+  "params": [{ "key": "theme", "type": "enum", "preview": true, "options": [ … ] }]
+}
+```
 
 ## Development
 
 ```sh
 npm install
-npm run dev        # http://localhost:5173
-npm test           # unit tests; set GITHUB_TOKEN to also run the GitHub render checks
+npm run dev        # site at /, editor at /editor/
+npm test           # set GITHUB_TOKEN to also run the GitHub render checks
 npm run build
 ```
 
 React, TypeScript, Vite, Tailwind, dnd-kit and zustand. The layout model (`src/model`), compiler (`src/compile`) and drop geometry (`src/canvas/dropTarget.ts`) are plain functions with their own tests.
 
-Every README it exports starts with an invisible `<!-- made with readme-canvas -->` comment so usage can be counted with GitHub code search. You can switch it off in the export dialog.
+Every README mien exports starts with an invisible `<!-- made with mien -->` comment, so usage can be counted with GitHub code search. You can switch it off when you export.
+
+---
+
+<p align="center">MIT license · made by <a href="https://github.com/reedlin2002">@reedlin2002</a></p>

@@ -35,10 +35,10 @@ export function Toolbar({ onExport, onTemplates }: { onExport: () => void; onTem
 
   return (
     <header className="flex h-14 shrink-0 items-center gap-3 border-b border-line bg-white px-4">
-      <div className="flex items-center gap-2">
-        <LogoMark />
-        <span className="font-display text-xl font-extrabold tracking-tight text-ink">{APP_NAME}</span>
-      </div>
+      <a href="../" className="flex items-center gap-2 text-brand-ink" aria-label={`${APP_NAME} home`}>
+        <LogoMark blink width={26} height={26} />
+        <span className="font-display text-[22px] leading-none font-extrabold tracking-[-0.05em]">{APP_NAME}</span>
+      </a>
       <span className="h-6 w-px bg-line" />
       <ProfileChip />
       <button

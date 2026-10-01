@@ -8,7 +8,9 @@ import { usePrefs } from './store/prefs';
 import { TemplateGallery } from './templates/TemplateGallery';
 import { ExportDialog } from './ui/ExportDialog';
 import { Modal } from './ui/Modal';
+import { StatusBar } from './ui/StatusBar';
 import { Toolbar } from './ui/Toolbar';
+import { Welcome } from './ui/Welcome';
 
 installMarkdownTheme();
 
@@ -62,7 +64,11 @@ function useShortcuts(enabled: boolean) {
 export function App() {
   const t = useT();
   const lang = usePrefs((s) => s.lang);
-  const [dialog, setDialog] = useState<'export' | 'templates' | null>(null);
+  // A first-time visitor (no username, nothing on the page) is asked for their username first.
+  const [dialog, setDialog] = useState<'export' | 'templates' | 'welcome' | null>(() => {
+    const { doc } = useEditor.getState();
+    return !doc.username && doc.rows.length === 0 ? 'welcome' : null;
+  });
   useShortcuts(dialog === null);
 
   useEffect(() => {
@@ -74,6 +80,8 @@ export function App() {
       <p className="bg-amber-100 px-4 py-2 text-center text-sm text-amber-900 lg:hidden">{t('narrow')}</p>
       <Toolbar onExport={() => setDialog('export')} onTemplates={() => setDialog('templates')} />
       <Workspace />
+      <StatusBar />
+      {dialog === 'welcome' && <Welcome onClose={() => setDialog(null)} />}
       {dialog === 'export' && <ExportDialog onClose={() => setDialog(null)} />}
       {dialog === 'templates' && (
         <Modal title={t('templatesTitle')} width="max-w-3xl" onClose={() => setDialog(null)}>

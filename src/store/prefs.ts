@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { APP_NAME, LEGACY_STORAGE_PREFIX } from '../config';
 import type { ColorMode } from '../model/types';
 
 export type Lang = 'en' | 'zh-TW';
@@ -11,7 +12,7 @@ interface Prefs {
   setLang: (lang: Lang) => void;
 }
 
-const KEY = 'readme-canvas:prefs';
+const KEY = `${APP_NAME}:prefs`;
 
 function initial(): Pick<Prefs, 'mode' | 'lang'> {
   let mode: ColorMode = 'light';
@@ -19,7 +20,8 @@ function initial(): Pick<Prefs, 'mode' | 'lang'> {
   try {
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) mode = 'dark';
     if (/^zh/i.test(navigator.language)) lang = 'zh-TW';
-    const saved = JSON.parse(localStorage.getItem(KEY) ?? '{}') as Partial<Prefs>;
+    const stored = localStorage.getItem(KEY) ?? localStorage.getItem(`${LEGACY_STORAGE_PREFIX}:prefs`);
+    const saved = JSON.parse(stored ?? '{}') as Partial<Prefs>;
     if (saved.mode === 'light' || saved.mode === 'dark') mode = saved.mode;
     if (saved.lang === 'en' || saved.lang === 'zh-TW') lang = saved.lang;
   } catch {

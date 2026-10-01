@@ -75,13 +75,15 @@ export function GripIcon(props: IconProps) {
   );
 }
 
-/** The brand mark: a wide block above two that have snapped into place. */
-export function LogoMark(props: IconProps) {
+/** The brand mark: a cat head with two square eyes and no mouth. */
+export function LogoMark({ blink, eyes = "var(--color-brand)", head = "var(--color-brand-ink)", ...props }: IconProps & { blink?: boolean; eyes?: string; head?: string }) {
   return (
-    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" {...props}>
-      <rect x="2" y="2" width="20" height="7" rx="2" fill="var(--color-brand)" />
-      <rect x="2" y="12" width="9" height="10" rx="2" fill="var(--color-ink)" />
-      <rect x="14" y="12" width="8" height="10" rx="2" fill="var(--color-ink)" />
+    <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" {...props}>
+      <path d="M3 9 5 2l5 5h4l5-5 2 7v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z" fill={head} />
+      <g className={blink ? "animate-blink" : undefined} style={{ transformBox: "fill-box", transformOrigin: "center" }}>
+        <rect x="7" y="12" width="4" height="4" rx="1" fill={eyes} />
+        <rect x="13" y="12" width="4" height="4" rx="1" fill={eyes} />
+      </g>
     </svg>
   );
 }

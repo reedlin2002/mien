@@ -14,6 +14,9 @@
   --color-brand-tint: #fdebe3;
   --color-brand-ink: #2a1206;
   --color-brand-text: #b3400e;
+  --color-cream: #fff6f0;
+  --color-cream-line: #f3d9c9;
+  --color-brown: #5a3a28;
   --color-ink: #1b1a17;
   --color-muted: #6f6c64;
   --color-faint: #a19e95;
@@ -22,4 +25,92 @@
   --color-paper: #f6f5f2;
   --color-github: #1f883d;
   --color-github-strong: #1a7f37;
+
+  --animate-blink: blink 4.2s infinite;
+  --animate-rise: rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-fadeup: fadeup 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-dropin: dropin 3.4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+  --animate-dropline: dropline 3.4s ease infinite;
+  --animate-marquee: marquee 38s linear infinite;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(45%) rotate(5deg);
+      filter: blur(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+  }
+  @keyframes fadeup {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes dropin {
+    0% {
+      transform: translate(70px, -46px) rotate(-6deg);
+      opacity: 0;
+    }
+    15% {
+      opacity: 1;
+    }
+    45%,
+    85% {
+      transform: none;
+      opacity: 1;
+    }
+    100% {
+      transform: none;
+      opacity: 0;
+    }
+  }
+  @keyframes dropline {
+    0%,
+    35% {
+      opacity: 0;
+      transform: scaleY(0.3);
+    }
+    45%,
+    85% {
+      opacity: 1;
+      transform: none;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(calc(-50% - 5px));
+    }
+  }
+
+  @keyframes blink {
+    0%,
+    92%,
+    100% {
+      transform: scaleY(1);
+    }
+    95% {
+      transform: scaleY(0.1);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }

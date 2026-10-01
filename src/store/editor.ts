@@ -1,9 +1,10 @@
 import { create } from 'zustand';
+import { APP_NAME, LEGACY_STORAGE_PREFIX } from '../config';
 import { emptyDoc, isDoc } from '../model/doc';
 import { findCell } from '../model/ops';
 import type { Doc } from '../model/types';
 
-const STORAGE_KEY = 'readme-canvas:doc';
+const STORAGE_KEY = `${APP_NAME}:doc`;
 const HISTORY_LIMIT = 100;
 
 export interface EditorState {
@@ -88,7 +89,8 @@ export function createEditorState(initial: Doc) {
 // then starts empty and simply doesn't remember.
 function loadDoc(): Doc {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    // Fall back to what was saved before the app had its name.
+    const raw = localStorage.getItem(STORAGE_KEY) ?? localStorage.getItem(`${LEGACY_STORAGE_PREFIX}:doc`);
     if (raw) {
       const parsed: unknown = JSON.parse(raw);
       if (isDoc(parsed)) return parsed;
